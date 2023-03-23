@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.software.entities.Veiculos;
+import br.com.software.models.dto.response.VeiculosResponse;
 import br.com.software.repository.VeiculosRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -22,8 +23,8 @@ public class VeiculosController {
 	}
 	
 	@GetMapping
-	public List<Veiculos> findAll() {
-		List<Veiculos> listaVeiculos = veiculosRepository.findAll();
+	public List<VeiculosResponse> findAll() {
+		List<VeiculosResponse> listaVeiculos = VeiculosResponse(veiculosRepository.findAll());
 		return listaVeiculos;
 	}
 }
