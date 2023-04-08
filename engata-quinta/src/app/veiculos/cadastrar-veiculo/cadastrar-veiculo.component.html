@@ -1,0 +1,12 @@
+
+<div class="adicionar-veiculos">
+    <h1>Cadastrar novo veículo</h1>
+
+    <input [(ngModel)]="modelo" type="text" placeholder="Insira o modelo do veiculo" />
+    <app-criador-placa></app-criador-placa>
+    <input [(ngModel)]="ano" type="number" placeholder="Insira o ano de fabricação do veiculo" />
+    <input [(ngModel)]="chassi" type="text" placeholder="Insira o número de chassi do veiculo" />
+    <button (click)="salvarVeiculo()">Salvar</button>
+</div>
+
+<!-- <app-action-modal [modal]="modal"></app-action-modal> -->

@@ -1,0 +1,15 @@
+header {
+    height: 80px;
+    min-width: 100%;
+    background-color: #f8904f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      border: none;
+      background-color: transparent;
+      font-size: 20px;
+      margin: 0 20px 0 0;
+    }
+    z-index: 5;
+  }

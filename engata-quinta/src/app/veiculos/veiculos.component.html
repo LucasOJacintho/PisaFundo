@@ -1,11 +1,21 @@
-<header>
-    <h1>Engata Quinta</h1>
-</header>
+<app-search-bar
+  [propriedades]="propriedades"
+  [tela]="tela"
+  (procurarValorEvent)="procurarVeiculo($event)"
+>
+</app-search-bar>
 
-<h2>Veiculos</h2>
+<app-action-modal [modal]="modal"></app-action-modal>
+
+<!-- <div class="adicionar-veiculos">
+    <input [(ngModel)]="placa" type="text" placeholder="Insira a placa do veiculo" />
+    <input [(ngModel)]="modelo" type="text" placeholder="Insira o modelo do veiculo" />
+    <input [(ngModel)]="ano" type="number" placeholder="Insira o ano de fabricação do veiculo" />
+    <button (click)="salvarVeiculo()">Salvar</button>
+</div>
 
 <div *ngFor="let veiculo of veiculos">
-    <div>
-        Placa : {{veiculo.placa}}
-    </div>
-</div>
+    <div *ngIf="veiculo !== undefined">Placa : {{ veiculo.placa }}</div>
+</div> -->
+
+<!-- <app-criador-placa></app-criador-placa> -->

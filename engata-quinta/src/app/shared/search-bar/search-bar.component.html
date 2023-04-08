@@ -1,0 +1,33 @@
+<main>
+  <h1>Busca de {{ tela }}</h1>
+
+  <div class="barra-de-busca">
+    <div class="new-input">
+      <input
+        type="text"
+        maxlength="{{ size }}"
+        [(ngModel)]="valorBusca"
+        placeholder="{{ preenchimento }}"
+        (keyup)="validarCaracter()"
+      />
+      <app-informacao
+        *ngIf="propriedade !== undefined"
+        [propriedade]="propriedade.mensagem"
+      ></app-informacao>
+    </div>
+    <app-button
+      [conteudo]="'Procurar'"
+      [acao]="'pesquisar'"
+      (click)="procurarValor()"
+      >Procurar</app-button
+    >
+  </div>
+
+  <p *ngIf="mensagemAlerta !== ''">{{ mensagemAlerta }}</p>
+
+  <app-radio-button
+    *ngIf="propriedades.length > 0"
+    [propriedades]="propriedades"
+    (selecionarPropriedadeEvent)="propriedadeSelecionada($event)"
+  ></app-radio-button>
+</main>

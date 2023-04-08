@@ -1,0 +1,4 @@
+<div class="seletor">
+    <div class="botao" [class.selected]="!placaNova" (click)="placa(false)">Placa Antiga</div>
+    <div class="botao" [class.selected]="placaNova" (click)="placa(true)">Placa Nova</div>
+</div>

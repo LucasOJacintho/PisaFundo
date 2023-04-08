@@ -1,0 +1,8 @@
+<app-search-bar
+  [propriedades]="propriedades"
+  [tela]="tela"
+  (procurarValorEvent)="procurarVeiculo($event)"
+>
+</app-search-bar>
+
+<app-action-modal [modal]="modal" (continuarEvent)="continuar($event)"></app-action-modal>

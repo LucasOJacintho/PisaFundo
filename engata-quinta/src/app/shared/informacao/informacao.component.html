@@ -1,0 +1,7 @@
+<div (mouseenter)="showModal = true" (mouseleave)="showModal = false" class="bordas">
+    <p>i</p>
+</div>
+
+<div *ngIf="showModal" class="modal">
+    <p>{{propriedade}}</p>
+</div>

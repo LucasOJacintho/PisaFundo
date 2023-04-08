@@ -1,0 +1,19 @@
+<div class="body">
+  <app-tipo-placa (alterarPlaca)="alterarPlaca($event)"></app-tipo-placa>
+
+  <div class="placa">
+    <app-seletor-placa [tipo]="'letras'"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'letras'"></app-seletor-placa>
+    <app-seletor-placa *ngIf="!placaNova" [tipo]="'letras'"></app-seletor-placa>
+    <app-seletor-placa *ngIf="placaNova" [tipo]="'numeros'"></app-seletor-placa>
+    <div *ngIf="!placaNova" class="hifen"></div>
+    <app-seletor-placa
+      *ngIf="!placaNova"
+      [tipo]="'numeros'"
+    ></app-seletor-placa>
+    <app-seletor-placa *ngIf="placaNova" [tipo]="'letras'"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'numeros'"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'numeros'"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'numeros'"></app-seletor-placa>
+  </div>
+</div>

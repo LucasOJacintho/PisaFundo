@@ -1,15 +1,15 @@
-import { ActionModal } from './../shared/action-modal/actionModal';
 import { Component, OnInit } from '@angular/core';
-import { Veiculo } from '../models/veiculo.model';
-import { VeiculosService } from './veiculos.service';
-import { Router } from '@angular/router';
+import { Veiculo } from 'src/app/models/veiculo.model';
+import { ActionModal } from 'src/app/shared/action-modal/actionModal';
+import { VeiculosService } from '../veiculos.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-veiculos',
-  templateUrl: './veiculos.component.html',
-  styleUrls: ['./veiculos.component.scss'],
+  selector: 'app-buscar-veiculos',
+  templateUrl: './buscar-veiculos.component.html',
+  styleUrls: ['./buscar-veiculos.component.scss'],
 })
-export class VeiculosComponent implements OnInit {
+export class BuscarVeiculosComponent implements OnInit {
   veiculos: Veiculo[] = [];
   veiculo!: Veiculo;
   placa!: string;
@@ -53,7 +53,7 @@ export class VeiculosComponent implements OnInit {
     continuar: 'Continuar',
   };
 
-  constructor(private service: VeiculosService, private router: Router) {}
+  constructor(private service: VeiculosService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.findAllVeiculos();
@@ -66,14 +66,15 @@ export class VeiculosComponent implements OnInit {
   }
 
   procurarVeiculo(objeto: any) {
+    this.veiculoInexistente()
     this.service.objeto = this.tratarPesquisa(objeto);
     this.service.findVeiculo(this.service.objeto).subscribe((response) => {
       if (response.object.length === 0) this.veiculoInexistente();
       else this.veiculos = response.object;
     });
     if (this.veiculos.length > 0) {
-      this.router.navigate(['/resultados'])
-    }
+      this.router.navigate(['/resultados'], {relativeTo: this.activatedRoute});
+    } else this.veiculoInexistente()
   }
 
   tratarPesquisa(objeto: any): any {
@@ -100,19 +101,11 @@ export class VeiculosComponent implements OnInit {
     };
   }
 
-  salvarVeiculo() {
-    //Salvar Veiculos deveria primeiramente validar no banco se essas informações (Placa e Chassis) são únicas
-    //Caso não deveria devolver uma mensagem de erro para o front tratar (Denunciar, Corrigir)
-
-    this.veiculo = {
-      placa: this.placa,
-      ano: this.ano,
-      modelo: this.modelo,
-      id: ++this.veiculos.length,
-    };
-    this.service.salvarVeiculos(this.veiculo).subscribe();
-    this.findAllVeiculos();
+  continuar(valor: string) {
+    this.router.navigate(['/cadastro'], {relativeTo: this.activatedRoute});
   }
+
+  
 
   //Componente Placa
 }

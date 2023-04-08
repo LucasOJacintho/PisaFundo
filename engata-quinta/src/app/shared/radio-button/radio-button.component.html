@@ -1,0 +1,10 @@
+<div class="select-option">
+    <div *ngFor="let propriedade of propriedades">
+        <div class="radio-button-options">
+            <div (click)="selecionarPropriedade(propriedade)" class="radio-button-externo">
+                <div *ngIf="propriedade === propriedadeSelecionada" class="radio-button-interno"></div>
+            </div>
+            <div>{{propriedade.label}}</div>
+        </div>
+    </div>
+</div>
