@@ -28,7 +28,9 @@ p {
 
 .header {
     display: flex;
-    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: space-between;
     p {
         font-size: 20px;
         margin: 0;

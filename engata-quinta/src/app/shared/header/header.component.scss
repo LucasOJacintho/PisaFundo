@@ -1,10 +1,7 @@
 header {
-    height: 80px;
+    height: 60px;
     min-width: 100%;
     background-color: #f8904f;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     button {
       border: none;
       background-color: transparent;
@@ -13,3 +10,59 @@ header {
     }
     z-index: 5;
   }
+
+.primeiro-campo{
+  height: 13px;
+  width: 100%;
+}
+
+.segundo-campo {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  gap: 30px;
+}
+
+.menu {
+  //background-color: white;
+  display: flex;
+  gap:40px;
+}
+
+.opcao {
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  //border: 1px solid black;
+  width: 120px;
+}
+
+.subOpcao {
+  margin-top: 20px;
+  //background-color: rgb(196, 196, 196);
+  border: 1px solid black;
+  border-top: 3px solid blue;
+  padding: 0 0 5px 5px;
+}
+
+.subBotao {
+  margin-top:10px;
+  cursor:pointer;
+  
+}
+
+.opcaoPrincipal {
+  font-weight: bold;
+}
+
+.opcaoPrincipal:hover {
+  color: blue;
+}

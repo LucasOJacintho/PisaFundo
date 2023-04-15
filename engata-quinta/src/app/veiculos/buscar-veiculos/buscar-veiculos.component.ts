@@ -41,7 +41,7 @@ export class BuscarVeiculosComponent implements OnInit {
       mensagem: 'Inserir o nome do modelo do veiculo apenas.',
       preenchimento: 'Insira o modelo do veiculo',
       validador: 15,
-      regex: '',
+      regex: null,
     },
   ];
   modal: ActionModal = {
@@ -53,7 +53,11 @@ export class BuscarVeiculosComponent implements OnInit {
     continuar: 'Continuar',
   };
 
-  constructor(private service: VeiculosService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private service: VeiculosService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.findAllVeiculos();
@@ -62,19 +66,22 @@ export class BuscarVeiculosComponent implements OnInit {
   findAllVeiculos() {
     this.service.getAllVeiculos().subscribe((response) => {
       this.veiculos = response.object;
+      this.service.veiculo = this.veiculos;
     });
   }
 
   procurarVeiculo(objeto: any) {
-    this.veiculoInexistente()
-    this.service.objeto = this.tratarPesquisa(objeto);
-    this.service.findVeiculo(this.service.objeto).subscribe((response) => {
-      if (response.object.length === 0) this.veiculoInexistente();
-      else this.veiculos = response.object;
+    this.service.pesquisa = this.tratarPesquisa(objeto);
+    console.log(this.service.pesquisa)
+    this.service.findVeiculo(this.service.pesquisa).subscribe((response) => {
+      this.veiculos = response.object;
+      this.service.veiculo = response.object;
+      if (this.veiculos !== null) {
+        this.router.navigate(['/resultados'], {
+          relativeTo: this.activatedRoute,
+        });
+      } else this.veiculoInexistente();
     });
-    if (this.veiculos.length > 0) {
-      this.router.navigate(['/resultados'], {relativeTo: this.activatedRoute});
-    } else this.veiculoInexistente()
   }
 
   tratarPesquisa(objeto: any): any {
@@ -92,8 +99,7 @@ export class BuscarVeiculosComponent implements OnInit {
     this.modal = {
       showModal: true,
       mensagem: 'Não existe veiculo cadastrado com o valor procurado.',
-      detalhes:
-        'Caso queira queira adicionar o veículo basta clicar em ADICIONAR.',
+      detalhes: 'Caso queira adicionar o veículo basta clicar em ADICIONAR.',
       alerta:
         'Ao clicar em Adicionar você será redirecionado para a página de cadstro de véiculos.',
       cancelar: 'Cancelar',
@@ -102,10 +108,23 @@ export class BuscarVeiculosComponent implements OnInit {
   }
 
   continuar(valor: string) {
-    this.router.navigate(['/cadastro'], {relativeTo: this.activatedRoute});
+    switch (this.service.pesquisa.propriedade) {
+      case 'placa':
+        this.service.placaPesquisada = this.service.pesquisa.valor;
+        this.service.modeloPesquisada = undefined;
+        this.service.chassiPesquisada = undefined;
+        break;
+      case 'chassi':
+        this.service.chassiPesquisada = this.service.pesquisa.valor;
+        this.service.placaPesquisada = undefined;
+        this.service.modeloPesquisada = undefined;
+        break;
+      case 'modelo':
+        this.service.modeloPesquisada = this.service.pesquisa.valor;
+        this.service.placaPesquisada = undefined;
+        this.service.chassiPesquisada = undefined;
+        break;
+    }
+    this.router.navigate(['/cadastro'], { relativeTo: this.activatedRoute });
   }
-
-  
-
-  //Componente Placa
 }

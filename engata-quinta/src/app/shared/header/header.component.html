@@ -1,6 +1,42 @@
 <header>
-    <h1>Engata Quinta</h1>
-    <div>
-        <button>Veiculos</button>
+    <div class="primeiro-campo"></div>
+    <div class="segundo-campo">
+
+        <h1>Engata Quinta</h1>
+
+        <body>
+            <div class="menu">
+                <div class="opcao" (mouseenter)="veiculos = true" (mouseleave)="veiculos = false">
+                    <div class="opcaoPrincipal">Veiculos</div>
+                    <div class="subOpcao" *ngIf="veiculos">
+                        <div (click)="navegacao('buscar')" class="subBotao">Buscar</div>
+                        <div (click)="navegacao('cadastrar')" class="subBotao">Cadastrar</div>
+                    </div>
+                </div>
+
+                <div class="opcao">
+                    <div>Proprietário</div>
+                </div>
+
+                <div class="opcao">
+                    <div>Fornecedor</div>
+                </div>
+
+            </div>
+
+            <!-- <button (mouseenter)="veiculos = true" (mouseleave)="veiculos = false">
+      Veiculos
+    </button>
+    <div
+      class="opcoes"
+      *ngIf="veiculos"
+      (mouseEnter)="veiculos = true"
+      (mouseleave)="veiculos = false"
+    >
+      <button>Buscar</button>
+      <button>Cadastrar</button>
+    </div> -->
+        </body>
+
     </div>
 </header>

@@ -14,9 +14,10 @@ import { SearchBarComponent } from './shared/search-bar/search-bar.component';
 import { InformacaoComponent } from './shared/informacao/informacao.component';
 import { ActionModalComponent } from './shared/action-modal/action-modal.component';
 import { ButtonComponent } from './shared/button/button.component';
-import { ResultadoBuscaComponent } from './shared/resultado-busca/resultado-busca.component';
+import { ResultadoBuscaComponent } from './veiculos/resultado-busca/resultado-busca.component';
 import { CadastrarVeiculoComponent } from './veiculos/cadastrar-veiculo/cadastrar-veiculo.component';
 import { BuscarVeiculosComponent } from './veiculos/buscar-veiculos/buscar-veiculos.component';
+import { TabelaComponent } from './shared/tabela/tabela.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BuscarVeiculosComponent } from './veiculos/buscar-veiculos/buscar-veicu
     ResultadoBuscaComponent,
     CadastrarVeiculoComponent,
     BuscarVeiculosComponent,
+    TabelaComponent,
   ],
   imports: [
     BrowserModule,

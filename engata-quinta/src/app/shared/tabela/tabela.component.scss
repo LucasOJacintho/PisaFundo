@@ -1,0 +1,32 @@
+.main {
+    width: 80%;
+    margin: auto;
+    border: 1px solid black;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+    background-color: rgb(179, 179, 179);
+}
+
+.coluna {
+    //border: 1px solid black;
+    padding: 15px;
+    width: -webkit-fill-available;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+}
+
+.linha:hover {
+    background-color: beige;
+    cursor: pointer;
+}

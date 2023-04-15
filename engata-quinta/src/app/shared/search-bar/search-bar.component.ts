@@ -19,8 +19,8 @@ export class SearchBarComponent {
 
 
   procurarValor() {
-    if(!this.propriedade.regex.test(this.valorBusca)) {
-      if (this.valorBusca?.length === this.propriedade.validador) {
+    if(!this.propriedade.regex?.test(this.valorBusca)) {
+      if (this.valorBusca?.length === this.propriedade.validador || this.propriedade.value === 'modelo') {
         let objeto = {
           valor: this.valorBusca,
           propriedade: this.propriedade.value

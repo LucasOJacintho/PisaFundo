@@ -1,25 +1,24 @@
 import { VeiculosService } from './../../veiculos.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tipo-placa',
   templateUrl: './tipo-placa.component.html',
-  styleUrls: ['./tipo-placa.component.scss']
+  styleUrls: ['./tipo-placa.component.scss'],
 })
-export class TipoPlacaComponent {
+export class TipoPlacaComponent implements OnInit {
+  @Output() alterarPlaca = new EventEmitter<boolean>();
+  placaNova : boolean | undefined;
+  placaService = '';
 
-  @Output() alterarPlaca = new EventEmitter<boolean>()
-  placaNova = false;
+  constructor(private service: VeiculosService) {}
 
-
-  constructor(
-    private veiculosService: VeiculosService
-  ){}
+  ngOnInit() {
+    this.placaNova = this.service.validarPlaca();
+  }
 
   placa(value: boolean) {
     this.placaNova = value;
-    //this.veiculosService.placaNova = this.placaNova;
-    this.alterarPlaca.emit(this.placaNova)
+    this.alterarPlaca.emit(this.placaNova);
   }
-
 }

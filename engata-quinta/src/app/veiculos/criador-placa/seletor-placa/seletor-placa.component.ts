@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { VeiculosService } from '../../veiculos.service';
 
 @Component({
   selector: 'app-seletor-placa',
@@ -7,11 +8,14 @@ import { Component, Input } from '@angular/core';
 })
 export class SeletorPlacaComponent {
   @Input() tipo : string | undefined;
+  @Input() posicao : number = 0;
   array: any[] = [];
   letras: String[] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","W","Z"];
   numeros: number[] = [1,2,3,4,5,6,7,8,9,0];
   valueArray : number = 0;
   selectedValue : any | undefined;
+
+  constructor(private service: VeiculosService) {}
 
   ngOnInit(): void {
     if (this.tipo === "numeros") {
@@ -20,6 +24,10 @@ export class SeletorPlacaComponent {
       this.array = this.letras;
     };
     this.selectedValue = this.array[0];
+
+    if (this.service.placaPesquisada !== undefined) {
+      this.selectedValue = this.service.placaPesquisada.substring(this.posicao, this.posicao+1)
+    }
   }
 
   alterValue(value: string){
@@ -27,5 +35,6 @@ export class SeletorPlacaComponent {
      this.valueArray - 1 < 0 ? this.array.length - 1 : --this.valueArray :
      this.valueArray + 1 > this.array.length - 1 ? 0 : ++this.valueArray;
     this.selectedValue  = this.array[this.valueArray];
+    this.service.placa[this.posicao] = this.selectedValue;
   }
 }
