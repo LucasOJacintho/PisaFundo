@@ -2,12 +2,11 @@ package br.com.software.models.dto.request;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.software.entities.Veiculos;
+import br.com.software.entities.Proprietarios;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 public class VeiculoRequest {
 
@@ -28,6 +27,19 @@ public class VeiculoRequest {
 	@NotNull
 	private int ano;
 	
+	@NotNull
+	private int veiculos_proprietarios;
+	
+	//private Proprietarios proprietario;
+	
+	public int getVeiculos_proprietarios() {
+		return veiculos_proprietarios;
+	}
+
+	public void setVeiculos_proprietarios(int veiculos_proprietarios) {
+	this.veiculos_proprietarios = veiculos_proprietarios;
+	}
+
 	public String getModelo() {
 		return modelo;
 	}
@@ -64,5 +76,13 @@ public class VeiculoRequest {
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
 	}
+
+	//public Proprietarios getProprietario() {
+	//	return proprietario;
+	//}
+
+	//public void setProprietario(Proprietarios proprietario) {
+	//	this.proprietario = proprietario;
+	//}
 
 }

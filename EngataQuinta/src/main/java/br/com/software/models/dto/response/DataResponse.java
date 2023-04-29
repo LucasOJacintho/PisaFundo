@@ -1,9 +1,5 @@
 package br.com.software.models.dto.response;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 

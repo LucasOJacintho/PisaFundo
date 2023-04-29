@@ -1,6 +1,6 @@
 package br.com.software.models.dto.request;
 
-public class VeiculosBuscaRequest {
+public class BuscaRequest {
 	
 	private String valor;
 	

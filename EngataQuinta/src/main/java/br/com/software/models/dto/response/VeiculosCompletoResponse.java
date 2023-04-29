@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class VeiculosResponse {
+public class VeiculosCompletoResponse {
 	
 	private int id;
 
@@ -19,12 +19,15 @@ public class VeiculosResponse {
 
 	private int ano;
 	
-	public VeiculosResponse(Veiculos veiculo) {
+	private ProprietariosResponse proprietario;
+	
+	public VeiculosCompletoResponse(Veiculos veiculo) {
 		this.setId(veiculo.getId());
 		this.setPlaca(veiculo.getPlaca());
 		this.setChassi(veiculo.getChassi());
 		this.setModelo(veiculo.getModelo());
 		this.setAno(veiculo.getAno());
+		this.setProprietario(new ProprietariosResponse(veiculo.getProprietario()));
 	}
 
 	public int getId() {
@@ -65,5 +68,13 @@ public class VeiculosResponse {
 
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
+	}
+	
+	public ProprietariosResponse getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(ProprietariosResponse proprietario) {
+		this.proprietario = proprietario;
 	}
 }

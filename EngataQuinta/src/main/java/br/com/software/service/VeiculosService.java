@@ -6,27 +6,30 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import br.com.software.controller.retur;
+import br.com.software.entities.Proprietarios;
 import br.com.software.entities.Veiculos;
 import br.com.software.models.dto.request.VeiculoRequest;
-import br.com.software.models.dto.request.VeiculosBuscaRequest;
+import br.com.software.models.dto.request.BuscaRequest;
 import br.com.software.models.dto.response.DataResponse;
+import br.com.software.models.dto.response.VeiculosCompletoResponse;
 import br.com.software.models.dto.response.VeiculosResponse;
+import br.com.software.repository.ProprietariosRepository;
 import br.com.software.repository.VeiculosRepository;
-import jakarta.validation.Valid;
 
 @Service
 public class VeiculosService {
 
-	private final VeiculosRepository veiculosRepository;
+	private final VeiculosRepository repository;
+	private final ProprietariosRepository proprietarioRepository;
 
-	public VeiculosService(VeiculosRepository veiculosRepository) {
-		this.veiculosRepository = veiculosRepository;
+	public VeiculosService(VeiculosRepository veiculosRepository, ProprietariosRepository proprietarioRepository) {
+		this.repository = veiculosRepository;
+		this.proprietarioRepository = proprietarioRepository;
 	}
 
 	public DataResponse encontrarTodos() {
 		try {
-			List<Veiculos> veiculos = veiculosRepository.findAll();
+			List<Veiculos> veiculos = repository.findAll();
 
 			List<VeiculosResponse> veiculosResponse = new ArrayList<>();
 			if (veiculos.size() > 0) {
@@ -37,17 +40,19 @@ public class VeiculosService {
 			String message = "Não há veiculos cadastrados!";
 			return new DataResponse(message);
 		} catch (Exception e) {
-			String message = "Houve um problema de comunicação!";
-			return new DataResponse(message, veiculosRepository.findAll());
+			String message = "Houve uma falha de comunicação, não foi possível concluir a solicitação!";
+			return new DataResponse(message);
 		}
 
 	}
 
-	public DataResponse novoVeiculo(VeiculoRequest request) {
+	public DataResponse cadastrar(VeiculoRequest request) {
+		//Proprietarios proprietario = proprietarioRepository.getProprietarioById(request.getVeiculos_proprietarios());
+		//request.setProprietario(proprietario);
 		Veiculos veiculo = new Veiculos(request);
 		DataResponse response = new DataResponse(null, null);
 		try {
-			veiculosRepository.save(veiculo);
+			repository.save(veiculo);
 			response.setMessage("Veiculo cadastrado com sucesso");
 			response.setObject(veiculo);
 		} catch (Exception e) {
@@ -56,18 +61,18 @@ public class VeiculosService {
 		return response;
 	}
 	
-	public DataResponse encontrarVeiculos(@RequestBody VeiculosBuscaRequest objeto) {
+	public DataResponse encontrarVeiculos(@RequestBody BuscaRequest objeto) {
 		
 		try {
-			List<Veiculos> veiculos = veiculosRepository.findByPropriedade(objeto.getValor());
+			List<Veiculos> veiculos = repository.findByPropriedade(objeto.getValor());
 
-			List<VeiculosResponse> veiculosResponse = new ArrayList<>();
+			List<VeiculosCompletoResponse> veiculosResponse = new ArrayList<>();
 			if(veiculos.size()>0) {
-				veiculos.forEach(veiculo -> veiculosResponse.add(new VeiculosResponse(veiculo)));
+				veiculos.forEach(veiculo -> veiculosResponse.add(new VeiculosCompletoResponse(veiculo)));
 				String message = "Veiculos encontrados com sucesso!";
 				return new DataResponse(message, veiculosResponse);
 			}
-			String message = "Não há veiculos cadastrados!";
+			String message = "Veículo não localizado!";
 			return new DataResponse(message);
 		} catch (Exception e){
 			String message = "Houve um problema de comunicação!";

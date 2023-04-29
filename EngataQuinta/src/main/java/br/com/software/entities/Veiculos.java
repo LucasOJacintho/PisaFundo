@@ -3,7 +3,13 @@ package br.com.software.entities;
 import br.com.software.models.dto.request.VeiculoRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +23,7 @@ import lombok.Setter;
 public class Veiculos {
 
 	@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private int id;
 	
@@ -32,14 +39,28 @@ public class Veiculos {
 	@Column(name="ano", nullable = false)
 	private int ano;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="veiculos_proprietarios", referencedColumnName="id", nullable = false, foreignKey = @ForeignKey(name="veiculos_proprietarios"))
+	private Proprietarios proprietario;
+		
+	public Proprietarios getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(Proprietarios proprietario) {
+		this.proprietario = proprietario;
+	}
 
 	public Veiculos(VeiculoRequest request) {
 		this.setAno(request.getAno());
 		this.setChassi(request.getChassi());
 		this.setModelo(request.getModelo());
 		this.setPlaca(request.getPlaca());
+		Proprietarios proprietario = new Proprietarios();
+		proprietario.setId(request.getVeiculos_proprietarios());
+		this.setProprietario(proprietario);
 	}
-	
+
 	public Veiculos() {
 
 	}
