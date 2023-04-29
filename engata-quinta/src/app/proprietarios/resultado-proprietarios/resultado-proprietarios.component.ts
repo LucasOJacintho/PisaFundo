@@ -21,8 +21,9 @@ export class ResultadoProprietariosComponent implements OnInit,OnChanges  {
 
   ngOnInit(): void {
     this.proprietario = this.service.proprietario;
-    this.documento = this.proprietario.cpf === "" ? this.proprietario.cnpj : this.proprietario.cpf;
+    this.documento = this.proprietario.cpf === null ? this.proprietario.cnpj : this.proprietario.cpf;
     this.service.telaResultados = true;
+    this.service.cadastrarVeiculo = false
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -65,9 +65,7 @@ export class BuscarProprietariosComponent {
   localizarProprietario(objeto: any) {
     if(objeto.propriedade === "cpf") this.service.cpfPesquisado = objeto.valor;
     else this.service.cnpjPesquisado = objeto.valor
-
     this.service.localizarProprietario(objeto).subscribe((response) => {
-      
       if (response.object !== null) {
         this.proprietario = response.object[0];
         this.service.veiculos = this.proprietario.veiculos
