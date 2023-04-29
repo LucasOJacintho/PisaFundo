@@ -77,7 +77,7 @@ export class BuscarVeiculosComponent implements OnInit {
       this.veiculos = response.object;
       this.service.veiculo = response.object;
       if (this.veiculos !== null) {
-        this.router.navigate(['/resultados'], {
+        this.router.navigate(['/resultados-veiculos'], {
           relativeTo: this.activatedRoute,
         });
       } else this.veiculoInexistente();
@@ -125,6 +125,6 @@ export class BuscarVeiculosComponent implements OnInit {
         this.service.chassiPesquisada = undefined;
         break;
     }
-    this.router.navigate(['/cadastro'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['/cadastro-veiculos'], { relativeTo: this.activatedRoute });
   }
 }

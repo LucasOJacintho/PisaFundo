@@ -13,8 +13,8 @@ export class SearchBarComponent {
   @Output() procurarValorEvent = new EventEmitter<any>()
   valorBusca: string = ""
   propriedade: any | undefined;
-  preenchimento: string = "Insira o valor a ser pesquisado."
-  size: number | undefined;
+  preenchimento: string
+  size: number = 11;
   mensagemAlerta: string = '';
 
 

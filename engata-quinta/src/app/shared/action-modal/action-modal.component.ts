@@ -16,12 +16,18 @@ export class ActionModalComponent {
     continuar: 'Continuar',
   };
   @Output() continuarEvent = new EventEmitter<string>()
+  @Output() cadastrarProprietarioEvent = new EventEmitter<string>()
 
   fecharModal() {
     this.modal.showModal = false
   }
 
   continuar() {
-    this.continuarEvent.emit(this.modal.continuar)
+    if(this.modal.mensagem === "Documento não localizado") {
+      this.cadastrarProprietarioEvent.emit(this.modal.continuar)
+    } else {
+      this.continuarEvent.emit(this.modal.continuar)
+    }
+    
   }
 }

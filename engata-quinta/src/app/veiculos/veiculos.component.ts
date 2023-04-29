@@ -1,8 +1,4 @@
-import { ActionModal } from './../shared/action-modal/actionModal';
-import { Component, OnInit } from '@angular/core';
-import { Veiculo } from '../models/veiculo.model';
-import { VeiculosService } from './veiculos.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';;
 
 @Component({
   selector: 'app-veiculos',

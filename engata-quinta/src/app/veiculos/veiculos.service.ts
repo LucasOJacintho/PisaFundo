@@ -2,7 +2,7 @@ import { Veiculo, VeiculoRequest } from './../models/veiculo.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, take, takeUntil } from 'rxjs';
-import { Response } from '../models/dataResponse';
+import { DataResponse } from '../models/dataResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,8 @@ export class VeiculosService {
   chassiPesquisada: string | undefined;
   modeloPesquisada: string | undefined;
 
-  mainUrl = 'http://192.168.1.10:8080/veiculos';
+  mainUrl = 'http://localhost:8081/veiculos';
+  resetarPlaca: boolean = false;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,22 +28,22 @@ export class VeiculosService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  getAllVeiculos(): Observable<Response> {
+  getAllVeiculos(): Observable<DataResponse> {
     return this.httpClient
       .get(this.mainUrl)
-      .pipe(map((res) => res as Response));
+      .pipe(map((res) => res as DataResponse));
   }
 
-  findVeiculo(objeto: any): Observable<Response> {
+  findVeiculo(objeto: any): Observable<DataResponse> {
     return this.httpClient
       .post(this.mainUrl, objeto)
-      .pipe(map((res) => res as Response));
+      .pipe(map((res) => res as DataResponse));
   }
 
-  salvarVeiculos(veiculo: VeiculoRequest): Observable<Response> {
+  salvarVeiculos(veiculo: VeiculoRequest): Observable<DataResponse> {
     return this.httpClient
-      .post(this.mainUrl + '/criar-veiculo', veiculo)
-      .pipe(map((res) => res as Response));
+      .post(this.mainUrl + '/cadastrar', veiculo)
+      .pipe(map((res) => res as DataResponse));
   }
 
   validarPlaca(): boolean | undefined {

@@ -9,13 +9,17 @@
                 <div class="opcao" (mouseenter)="veiculos = true" (mouseleave)="veiculos = false">
                     <div class="opcaoPrincipal">Veiculos</div>
                     <div class="subOpcao" *ngIf="veiculos">
-                        <div (click)="navegacao('buscar')" class="subBotao">Buscar</div>
-                        <div (click)="navegacao('cadastrar')" class="subBotao">Cadastrar</div>
+                        <div (click)="navegacao('buscar-veiculos')" class="subBotao">Buscar</div>
+                        <div (click)="navegacao('cadastrar-veiculos')" class="subBotao">Cadastrar</div>
                     </div>
                 </div>
 
-                <div class="opcao">
-                    <div>Proprietário</div>
+                <div class="opcao" (mouseenter)="proprietarios = true" (mouseleave)="proprietarios = false">
+                    <div class="opcaoPrincipal">Proprietário</div>
+                    <div class="subOpcao" *ngIf="proprietarios">
+                        <div (click)="navegacao('buscar-proprietarios')" class="subBotao">Buscar</div>
+                        <div (click)="navegacao('cadastrar-proprietarios')" class="subBotao">Cadastrar</div>
+                    </div>
                 </div>
 
                 <div class="opcao">
@@ -23,19 +27,6 @@
                 </div>
 
             </div>
-
-            <!-- <button (mouseenter)="veiculos = true" (mouseleave)="veiculos = false">
-      Veiculos
-    </button>
-    <div
-      class="opcoes"
-      *ngIf="veiculos"
-      (mouseEnter)="veiculos = true"
-      (mouseleave)="veiculos = false"
-    >
-      <button>Buscar</button>
-      <button>Cadastrar</button>
-    </div> -->
         </body>
 
     </div>

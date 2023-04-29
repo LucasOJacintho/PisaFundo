@@ -11,5 +11,6 @@ export interface VeiculoRequest {
     chassi: String;
     ano: Number;
     modelo: String;
+    veiculos_proprietarios: string;
 }
 

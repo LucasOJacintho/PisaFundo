@@ -18,9 +18,37 @@ body {
       width: 50%
     }
   }
+
+  .seletor {
+    display: flex;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: fit-content;
+    align-items: center;
+  }
   
-  ///////////////////////////////////////////////// Radio Button Componente
-  
-  
-  
+  .botao {
+    height: 30px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .documento {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+
+    input {
+        width: 170%;
+    }
+
+    .selected {
+      background-color: aqua;
+      border-radius: 5px;
+    }
+}
   

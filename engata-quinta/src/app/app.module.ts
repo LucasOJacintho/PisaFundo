@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CriadorPlacaComponent } from './veiculos/criador-placa/criador-placa.component';
 import { CriadorPlacaModule } from './veiculos/criador-placa/criador-placa.module';
 import { VeiculosComponent } from './veiculos/veiculos.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -18,6 +17,9 @@ import { ResultadoBuscaComponent } from './veiculos/resultado-busca/resultado-bu
 import { CadastrarVeiculoComponent } from './veiculos/cadastrar-veiculo/cadastrar-veiculo.component';
 import { BuscarVeiculosComponent } from './veiculos/buscar-veiculos/buscar-veiculos.component';
 import { TabelaComponent } from './shared/tabela/tabela.component';
+import { BuscarProprietariosComponent } from './proprietarios/buscar-proprietarios/buscar-proprietarios.component';
+import { CadastrarProprietariosComponent } from './proprietarios/cadastrar-proprietarios/cadastrar-proprietarios.component';
+import { ResultadoProprietariosComponent } from './proprietarios/resultado-proprietarios/resultado-proprietarios.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,9 @@ import { TabelaComponent } from './shared/tabela/tabela.component';
     CadastrarVeiculoComponent,
     BuscarVeiculosComponent,
     TabelaComponent,
+    BuscarProprietariosComponent,
+    CadastrarProprietariosComponent,
+    ResultadoProprietariosComponent,
   ],
   imports: [
     BrowserModule,

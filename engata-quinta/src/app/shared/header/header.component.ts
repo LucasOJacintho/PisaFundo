@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { ProprietarioService } from 'src/app/proprietarios/proprietarios.service';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +9,32 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   veiculos: boolean = false;
+  proprietarios: boolean = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private proprrietarioService: ProprietarioService) {}
 
 
   navegacao(valor : string){
     switch(valor) {
-      case 'buscar':
-        this.router.navigate(['/busca'], {relativeTo: this.activatedRoute});
+      case 'buscar-veiculos':
+        this.router.navigate(['/busca-veiculos'], {relativeTo: this.activatedRoute});
         break;
 
-      case 'cadastrar':
-        this.router.navigate(['/cadastro'], {relativeTo: this.activatedRoute});
+      case 'cadastrar-veiculos':
+        this.router.navigate(['/cadastro-veiculos'], {relativeTo: this.activatedRoute});
+        this.proprrietarioService.cadastrarVeiculo = false;
+        this.proprietarios = null;
+        break;
+      
+
+      case 'cadastrar-proprietarios':
+        this.router.navigate(['/cadastro-proprietarios'], {relativeTo: this.activatedRoute});
+        break;
+      
+
+      case 'buscar-proprietarios':
+        this.router.navigate(['/busca-proprietarios'], {relativeTo: this.activatedRoute});
         break;
       }
   }

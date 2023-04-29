@@ -2,15 +2,14 @@
   <app-tipo-placa (alterarPlaca)="alterarPlaca($event)"></app-tipo-placa>
 
   <div class="placa">
-    <app-seletor-placa [tipo]="'letras'" [posicao]="0"></app-seletor-placa>
-    <app-seletor-placa [tipo]="'letras'" [posicao]="1"></app-seletor-placa>
-    <app-seletor-placa *ngIf="!placaNova" [tipo]="'letras'" [posicao]="2"></app-seletor-placa>
-    <app-seletor-placa *ngIf="placaNova" [tipo]="'numeros'" [posicao]="2"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'letras'" [posicao]="0" [resetPlaca]="resetPlaca"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'letras'" [posicao]="1" [resetPlaca]="resetPlaca"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'letras'" [posicao]="2" [resetPlaca]="resetPlaca"></app-seletor-placa>
     <div *ngIf="!placaNova" class="hifen"></div>
-    <app-seletor-placa *ngIf="!placaNova" [tipo]="'numeros'" [posicao]="3"></app-seletor-placa>
-    <app-seletor-placa *ngIf="placaNova" [tipo]="'letras'" [posicao]="3"></app-seletor-placa>
-    <app-seletor-placa [tipo]="'numeros'" [posicao]="4"></app-seletor-placa>
-    <app-seletor-placa [tipo]="'numeros'" [posicao]="5"></app-seletor-placa>
-    <app-seletor-placa [tipo]="'numeros'" [posicao]="6"></app-seletor-placa>
+    <app-seletor-placa *ngIf="!placaNova" [tipo]="'numeros'" [posicao]="3" [resetPlaca]="resetPlaca"></app-seletor-placa>
+    <app-seletor-placa *ngIf="placaNova" [tipo]="'letras'" [posicao]="3" [resetPlaca]="resetPlaca"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'numeros'" [posicao]="4" [resetPlaca]="resetPlaca"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'numeros'" [posicao]="5" [resetPlaca]="resetPlaca"></app-seletor-placa>
+    <app-seletor-placa [tipo]="'numeros'" [posicao]="6" [resetPlaca]="resetPlaca"></app-seletor-placa>
   </div>
 </div>

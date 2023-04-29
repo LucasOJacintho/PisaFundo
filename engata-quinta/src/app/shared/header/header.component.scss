@@ -2,13 +2,16 @@ header {
     height: 60px;
     min-width: 100%;
     background-color: #f8904f;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    z-index: 5;
     button {
       border: none;
       background-color: transparent;
       font-size: 20px;
       margin: 0 20px 0 0;
     }
-    z-index: 5;
   }
 
 .primeiro-campo{
@@ -47,7 +50,7 @@ body {
 
 .subOpcao {
   margin-top: 20px;
-  //background-color: rgb(196, 196, 196);
+  background-color: rgb(196, 196, 196);
   border: 1px solid black;
   border-top: 3px solid blue;
   padding: 0 0 5px 5px;
