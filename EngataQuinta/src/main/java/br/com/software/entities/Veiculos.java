@@ -17,7 +17,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@RequiredArgsConstructor
 @Entity
 @Table(name="veiculos")
 public class Veiculos {

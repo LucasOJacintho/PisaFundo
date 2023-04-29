@@ -22,7 +22,6 @@ import jakarta.validation.constraints.NotNull;
 public class Proprietarios {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private int id;
 	
