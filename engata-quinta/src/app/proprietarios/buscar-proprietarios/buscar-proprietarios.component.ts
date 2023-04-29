@@ -59,7 +59,6 @@ export class BuscarProprietariosComponent {
   localizarProprietarios() {
     this.service.pegarTodosProprietarios().subscribe((response) => {
       this.proprietarios = response.object;
-      //this.service.proprietario = this.proprietarios;
     });
   }
 
@@ -68,9 +67,11 @@ export class BuscarProprietariosComponent {
     else this.service.cnpjPesquisado = objeto.valor
 
     this.service.localizarProprietario(objeto).subscribe((response) => {
-      this.proprietario = response.object[0];
-      this.service.proprietario = response.object[0];
-      if (this.proprietarios !== null) {
+      
+      if (response.object !== null) {
+        this.proprietario = response.object[0];
+        this.service.veiculos = this.proprietario.veiculos
+        this.service.proprietario = response.object[0];
         this.service.cnpjPesquisado=null;
         this.service.cpfPesquisado=null;
         this.service.telaResultados = true;
@@ -105,6 +106,7 @@ export class BuscarProprietariosComponent {
   }
 
   continuar(valor: string) {
+    this.service.cadastrarProprietario = true
     this.router.navigate(['/cadastro-proprietarios'], { relativeTo: this.activatedRoute });
   }
 }

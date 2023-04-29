@@ -16,22 +16,32 @@ export class ResultadoProprietariosComponent implements OnInit,OnChanges  {
   veiculos: Veiculo[] = [];
   tabela: string[] = ["MODELO", "ANO", "PLACA", "CHASSI"]
   objetos: any[] = []
-  cadastrarVeiculo: boolean = false;
 
   constructor( public service:ProprietarioService) { }
 
   ngOnInit(): void {
     this.proprietario = this.service.proprietario;
     this.documento = this.proprietario.cpf === "" ? this.proprietario.cnpj : this.proprietario.cpf;
-    this.objetos = this.veiculos = this.proprietario.veiculos;
     this.service.telaResultados = true;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.service.telaResultados = true;
+    this.service.cadastroRealizado;
+    this.localizarProprietario()
   }
 
   mudarTela() {
-    this.cadastrarVeiculo = this.service.cadastrarVeiculo = true;
+    this.service.cadastrarVeiculo = true;
+  }
+
+  localizarProprietario() {
+    let objeto = {
+      propriedade: "",
+      valor: this.documento
+    }
+    this.service.localizarProprietario(objeto).subscribe((response) => {
+      this.objetos = this.veiculos = response.object[0].veiculos;
+    })
   }
 }

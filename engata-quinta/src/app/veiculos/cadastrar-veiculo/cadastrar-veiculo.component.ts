@@ -127,6 +127,7 @@ export class CadastrarVeiculoComponent implements OnInit {
   salvarVeiculo() {
     this.service.salvarVeiculos(this.veiculo).subscribe({
       next: () => {
+        this.proprietarioService.veiculos.push(this.veiculo)
         this.modelo = null;
         this.ano = null;
         this.cnpj = null;
@@ -138,7 +139,7 @@ export class CadastrarVeiculoComponent implements OnInit {
           this.router.navigate(['/busca-proprietarios'], {
           });
         } else {
-          this.proprietarioService.cadastroRealizado = true;
+          this.proprietarioService.cadastrarVeiculo = false;
         }
         
       },

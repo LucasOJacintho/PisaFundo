@@ -3,17 +3,17 @@
     <div>Documento: {{documento}}</div>
 </header>
 
-<div *ngIf="proprietario.veiculos.length > 0 && (!cadastrarVeiculo || service.cadastroRealizado)"  class="informacao">
+<div *ngIf="proprietario.veiculos.length > 0 && !service.cadastrarVeiculo"  class="informacao">
     <h1>
         Veiculos
     </h1>
     
-    <app-tabela [propriedades]="tabela" [objetos]="objetos"></app-tabela>
+    <app-tabela [propriedades]="tabela" [objetos]="service.veiculos"></app-tabela>
+
+    <div class="campo-botao">
+        <app-button [conteudo]="'Cadastrar Novo'" [acao]="'continuar'" (click)="mudarTela()"></app-button>
+    </div>
 
 </div>
 
-<div class="campo-botao">
-    <app-button *ngIf="!cadastrarVeiculo || service.cadastroRealizado" [conteudo]="'Cadastrar Novo'" [acao]="'continuar'" (click)="mudarTela()"></app-button>
-</div>
-
-<app-cadastrar-veiculo *ngIf="cadastrarVeiculo && !service.cadastroRealizado"></app-cadastrar-veiculo>
+<app-cadastrar-veiculo *ngIf="service.cadastrarVeiculo"></app-cadastrar-veiculo>

@@ -23,8 +23,8 @@
         placeholder="Insira a data de aniversário do proprietário" />
 
     <app-button [conteudo]="'Cadastrar'" [acao]="
-      ((!this.documentoSelecionado && this.cpf.length === 11) ||
-        (this.documentoSelecionado && this.cnpj.length === 14)) &&
+      ((!this.documentoSelecionado && this.cpf?.length === 11) ||
+        (this.documentoSelecionado && this.cnpj?.length === 14)) &&
       nome.trim().length > 3 &&
       aniversario !== undefined
         ? 'continuar'

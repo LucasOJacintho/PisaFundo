@@ -40,6 +40,10 @@ export class CadastrarProprietariosComponent {
     this.cpf = this.service.cpfPesquisado === undefined ? '' : this.service.cpfPesquisado;
     this.cnpj = this.service.cnpjPesquisado === undefined ? '' : this.service.cnpjPesquisado;
     this.documentoSelecionado = this.cnpj === '' ? false : true;
+    if (this.service.cadastrarProprietario === false) {
+      this.cpf = this.cnpj = undefined
+    }
+    this.service.cadastrarProprietario = false
   }
 
   prepararProprietario() {
@@ -85,6 +89,8 @@ export class CadastrarProprietariosComponent {
     this.service.salvarProprietarios(this.proprietario).subscribe({
       next: () => {
         this.pegarTodosProprietarios();
+        this.router.navigate(['/busca-proprietarios'], {
+        });
       },
       error: () => { },
     });

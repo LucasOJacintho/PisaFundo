@@ -18,6 +18,8 @@ export class ProprietarioService {
   cadastrarVeiculo: boolean = false;
   telaResultados: any;
   cadastroRealizado: boolean;
+  cadastrarProprietario: boolean;
+  veiculos: any;
 
   constructor(private httpClient: HttpClient) { }
 
