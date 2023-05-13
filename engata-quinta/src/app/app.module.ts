@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, forwardRef } from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,11 @@ import { TabelaComponent } from './shared/tabela/tabela.component';
 import { BuscarProprietariosComponent } from './proprietarios/buscar-proprietarios/buscar-proprietarios.component';
 import { CadastrarProprietariosComponent } from './proprietarios/cadastrar-proprietarios/cadastrar-proprietarios.component';
 import { ResultadoProprietariosComponent } from './proprietarios/resultado-proprietarios/resultado-proprietarios.component';
+import { BuscarFornecedoresComponent } from './fornecedores/buscar-fornecedores/buscar-fornecedores.component';
+import { CadastrarFornecedoresComponent } from './fornecedores/cadastrar-fornecedores/cadastrar-fornecedores.component';
+import { ResultadosFornecedoresComponent } from './fornecedores/resultados-fornecedores/resultados-fornecedores.component';
+import { DetalheVeiculosComponent } from './veiculos/detalhe-veiculos/detalhe-veiculos.component';
+import { DetalheFornecedorComponent } from './fornecedores/detalhe-fornecedor/detalhe-fornecedor.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +43,11 @@ import { ResultadoProprietariosComponent } from './proprietarios/resultado-propr
     BuscarProprietariosComponent,
     CadastrarProprietariosComponent,
     ResultadoProprietariosComponent,
+    BuscarFornecedoresComponent,
+    CadastrarFornecedoresComponent,
+    ResultadosFornecedoresComponent,
+    DetalheVeiculosComponent,
+    DetalheFornecedorComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,6 @@ import { ResultadoProprietariosComponent } from './proprietarios/resultado-propr
     FormsModule,
     CriadorPlacaModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,9 +22,13 @@
                     </div>
                 </div>
 
-                <div class="opcao">
-                    <div>Fornecedor</div>
-                </div>
+                <div class="opcao" (mouseenter)="fornecedores = true" (mouseleave)="fornecedores = false">
+                  <div class="opcaoPrincipal">Fornecedores</div>
+                  <div class="subOpcao" *ngIf="fornecedores">
+                      <div (click)="navegacao('buscar-fornecedores')" class="subBotao">Buscar</div>
+                      <div (click)="navegacao('cadastrar-fornecedores')" class="subBotao">Cadastrar</div>
+                  </div>
+              </div>
 
             </div>
         </body>

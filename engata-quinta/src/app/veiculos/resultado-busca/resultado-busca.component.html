@@ -2,11 +2,11 @@
     <h1>
         Resultado Pesquisa
     </h1>
-    
+
     <div>
         <p>{{pesquisa.propriedade.toUpperCase()}}:</p>
         <p>{{pesquisa.valor}}</p>
-    </div>    
+    </div>
 </div>
 
-<app-tabela [propriedades]="tabela" [objetos]="objetos"></app-tabela>
+<app-tabela [propriedades]="tabela" [objetos]="objetos" (detalheObjetoEvent)="detalheObjeto($event)"></app-tabela>

@@ -1,0 +1,9 @@
+<h1>Nome Proprietário: {{proprietario}}</h1>
+<div class="dados-veiculos">
+  <h2>Modelo do Veiculo: {{service.veiculoDetalhe.modelo}}</h2>
+  <h2>Placa:{{service.veiculoDetalhe.placa}}</h2>
+  <h2>Ano:{{service.veiculoDetalhe.ano}}</h2>
+</div>
+
+
+<app-tabela [propriedades]="tabela" [objetos]="manutencoes"></app-tabela>

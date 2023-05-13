@@ -9,9 +9,10 @@ import { Proprietarios, ProprietariosRequest } from 'src/app/models/proprietario
 })
 export class ProprietarioService {
 
+
   proprieatarios: Proprietarios[] = [];
 
-  mainUrl = 'http://localhost:8081/proprietarios';
+  mainUrl = 'http://192.168.1.10:8080/proprietarios';
   cpfPesquisado: any;
   cnpjPesquisado: any;
   proprietario: Proprietarios;
@@ -37,6 +38,12 @@ export class ProprietarioService {
     return this.httpClient
       .post(this.mainUrl, objeto)
       .pipe(map((res) => res as DataResponse));
+  }
+
+  localizarProprietarioPeloIdVeiculo(id: Number): Observable<DataResponse> {
+    return this.httpClient
+    .post(this.mainUrl, id)
+    .pipe(map((res) => res as DataResponse));
   }
 
   validarDocumento(value: string) : Observable<DataResponse> {

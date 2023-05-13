@@ -19,8 +19,9 @@ export class VeiculosService {
   chassiPesquisada: string | undefined;
   modeloPesquisada: string | undefined;
 
-  mainUrl = 'http://localhost:8081/veiculos';
+  mainUrl = 'http://192.168.1.10:8080/veiculos';
   resetarPlaca: boolean = false;
+  veiculoDetalhe: Veiculo;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -37,6 +38,12 @@ export class VeiculosService {
   findVeiculo(objeto: any): Observable<DataResponse> {
     return this.httpClient
       .post(this.mainUrl, objeto)
+      .pipe(map((res) => res as DataResponse));
+  }
+
+  localizarManutencoes(id: Number): Observable<DataResponse> {
+    return this.httpClient
+      .post(this.mainUrl, id)
       .pipe(map((res) => res as DataResponse));
   }
 

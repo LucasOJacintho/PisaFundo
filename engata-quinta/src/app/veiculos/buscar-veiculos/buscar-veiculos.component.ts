@@ -72,7 +72,6 @@ export class BuscarVeiculosComponent implements OnInit {
 
   procurarVeiculo(objeto: any) {
     this.service.pesquisa = this.tratarPesquisa(objeto);
-    console.log(this.service.pesquisa)
     this.service.findVeiculo(this.service.pesquisa).subscribe((response) => {
       this.veiculos = response.object;
       this.service.veiculo = response.object;

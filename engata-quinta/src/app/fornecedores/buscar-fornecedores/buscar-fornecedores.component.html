@@ -1,0 +1,14 @@
+<app-search-bar
+  [propriedades]="propriedades"
+  [tela]="tela"
+  (procurarValorEvent)="localizarFornecedor($event)"
+>
+</app-search-bar>
+
+<div class="busca-tipo">
+  <h1>Pesquisar por tipo</h1>
+  <app-radio-button [propriedades]="tiposServicos" (selecionarPropriedadeEvent)="alterarTipo($event)"></app-radio-button>
+  <app-button  (click)="pesquisarPorTipo()" [conteudo]="'Pesquisar'" [acao]="'pesquisar'"></app-button>
+</div>
+
+<app-action-modal [modal]="modal"></app-action-modal>

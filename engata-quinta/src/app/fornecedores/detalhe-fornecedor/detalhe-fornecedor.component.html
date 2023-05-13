@@ -1,0 +1,39 @@
+<header>
+  <div>Nome: {{ fornecedor.nome }}</div>
+  <div>Documento: {{ fornecedor.cnpj }}</div>
+</header>
+
+<div class="opcoes">
+  <app-button [conteudo]="'Cadastrar Manutenção'" [acao]="'continuar'" (click)="cadastrar()"></app-button>
+  <app-button [conteudo]="'Manutenções em Andamento'" [acao]="'continuar'" (click)="ativas()"></app-button>
+  <app-button [conteudo]="'Manutenções concluídas'" [acao]="'continuar'" (click)="concluidas() "></app-button>
+</div>
+
+<div class="cadastro-veiculo" *ngIf="cadastro">
+  <h1>Cadastrar Nova Manutenção</h1>
+  <app-criador-placa [placaNova]="" [resetPlaca]="resetPlaca"></app-criador-placa>
+  <input [(ngModel)]="servico" type="text" placeholder="Insira a descrição do serviço" />
+  <app-button [conteudo]="'Cadastrar Manutenção'" [acao]="'continuar'" (click)="cadastrarNova() "></app-button>
+
+</div>
+
+<div *ngIf="!cadastro">
+  <h1>{{statusManutencao}}</h1>
+
+  <div class="main">
+    <div class="header">
+      <div class="cabecalho" *ngFor="let propriedade of tabela">
+        <div class="coluna">{{ propriedade }}</div>
+      </div>
+    </div>
+    <div class="body" *ngIf="atualizado">
+      <div (click)="detalheObjeto(manutencao)" class="linha" *ngFor="let manutencao of listaExibida">
+        <div class="coluna">{{ manutencao.modeloVeiculo}}</div>
+        <div class="coluna">{{ manutencao.placaVeiculo }}</div>
+        <div class="coluna">{{ manutencao.servico }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-action-modal [modal]="modal" (continuarEvent)="continuar($event)"></app-action-modal>

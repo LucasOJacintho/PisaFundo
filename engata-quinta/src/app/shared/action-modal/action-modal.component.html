@@ -10,7 +10,7 @@
     </div>
     <div class="botoes">
       <app-button (click)="fecharModal()" [conteudo]="modal.cancelar" [acao]="'cancelar'"></app-button>
-      <app-button (click)="continuar()" [conteudo]="modal.continuar" [acao]="'continuar'"></app-button>
+      <app-button *ngIf="modal.continuar !== ''" (click)="continuar()" [conteudo]="modal.continuar" [acao]="'continuar'"></app-button>
     </div>
   </div>
 </div>

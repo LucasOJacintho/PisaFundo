@@ -1,0 +1,14 @@
+<div class="adicionar-veiculos">
+  <h1>Cadastrar novo fornecedor</h1>
+
+  <input [(ngModel)]="nome" type="text" placeholder="Insira o nome do fornecedor" />
+  <input [(ngModel)]="cnpj" maxlength="14" placeholder="Insira o CNPJ do fornecedor" type="text"
+    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+  <input [(ngModel)]="telefone" type="text" placeholder="Insira o telefone do fornecedor" />
+  <app-radio-button [propriedades]="tiposServicos" (selecionarPropriedadeEvent)="alterarTipo($event)"></app-radio-button>
+
+  <app-button [conteudo]="'Cadastrar'" [acao]="(this.cnpj?.length === 14 && nome.trim().length > 3 && telefone.trim().length > 7 && tipo !== null)
+        ? 'continuar' : 'cancelar'" (click)="prepararFornecedor()"></app-button>
+</div>
+
+<app-action-modal [modal]="modal" (continuarEvent)="continuar($event)"></app-action-modal>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Veiculo } from 'src/app/models/veiculo.model';
 
 @Component({
@@ -8,15 +8,15 @@ import { Veiculo } from 'src/app/models/veiculo.model';
 })
 export class TabelaComponent implements OnInit {
   @Input() objetos: any[] = [];
-
   @Input() propriedades: string[] = [];
+  @Output() detalheObjetoEvent = new EventEmitter<any>()
 
   constructor() {}
 
   ngOnInit(): void {
   }
 
-  veiculoDetalhe(veiculo: Veiculo) {
-    console.log(veiculo);
+  detalheObjeto(objeto: any) {
+    this.detalheObjetoEvent.emit(objeto)
   }
 }

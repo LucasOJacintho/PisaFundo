@@ -1,11 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss','../../app.component.scss']
+  styleUrls: ['./search-bar.component.scss','../../app.component.scss'],
 })
-export class SearchBarComponent {
+
+export class SearchBarComponent implements OnInit {
 
   @Input() propriedades: any[] = []
   @Input() tela: string | undefined;
@@ -13,10 +15,13 @@ export class SearchBarComponent {
   @Output() procurarValorEvent = new EventEmitter<any>()
   valorBusca: string = ""
   propriedade: any | undefined;
-  preenchimento: string
+  preenchimento: string = "Favor inserir valor válido";
   size: number = 11;
   mensagemAlerta: string = '';
 
+  ngOnInit() {
+
+  }
 
   procurarValor() {
     if(!this.propriedade.regex?.test(this.valorBusca)) {

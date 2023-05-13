@@ -1,4 +1,4 @@
-<div class="select-option">
+<div *ngIf="propriedades.length>1" class="select-option">
     <div *ngFor="let propriedade of propriedades">
         <div class="radio-button-options">
             <div (click)="selecionarPropriedade(propriedade)" class="radio-button-externo">

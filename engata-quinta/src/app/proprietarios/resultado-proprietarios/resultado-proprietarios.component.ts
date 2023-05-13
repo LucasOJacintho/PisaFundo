@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Proprietarios } from 'src/app/models/proprietarios.model';
 import { Veiculo } from 'src/app/models/veiculo.model';
 import { ProprietarioService } from '../proprietarios.service';
+import { VeiculosService } from 'src/app/veiculos/veiculos.service';
 
 @Component({
   selector: 'app-resultado-proprietarios',
@@ -16,8 +17,9 @@ export class ResultadoProprietariosComponent implements OnInit,OnChanges  {
   veiculos: Veiculo[] = [];
   tabela: string[] = ["MODELO", "ANO", "PLACA", "CHASSI"]
   objetos: any[] = []
+  telaDeDetalhes: boolean = false;
 
-  constructor( public service:ProprietarioService) { }
+  constructor( public service:ProprietarioService, public veiculoServe: VeiculosService) { }
 
   ngOnInit(): void {
     this.proprietario = this.service.proprietario;
@@ -44,5 +46,10 @@ export class ResultadoProprietariosComponent implements OnInit,OnChanges  {
     this.service.localizarProprietario(objeto).subscribe((response) => {
       this.objetos = this.veiculos = response.object[0].veiculos;
     })
+  }
+
+  detalheObjeto(objeto: any) {
+    this.veiculoServe.veiculoDetalhe = objeto;
+    this.telaDeDetalhes = true;
   }
 }
