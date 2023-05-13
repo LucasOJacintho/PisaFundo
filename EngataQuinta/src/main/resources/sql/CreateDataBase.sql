@@ -35,3 +35,41 @@ ADD CONSTRAINT `veiculos_proprietarios`
 ALTER TABLE `engata_quinta`.`proprietarios` 
 CHANGE COLUMN `rg` `cnpj` VARCHAR(14) NULL ,
 CHANGE COLUMN `cpf` `cpf` VARCHAR(11) NULL ;
+
+
+
+ create table FORNECEDOR(
+id INT auto_increment, 
+nome varchar(50) NOT NULL, 
+cnpj VARCHAR(14) NOT NULL,
+tipo_servico varchar(255) not null,
+telefone varchar(11), 
+primary key (id)) Engine = InnoDB; 
+;
+
+ALTER TABLE `engata_quinta`.`fornecedor` 
+ADD UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC) VISIBLE;
+;
+
+ create table VEICULO_FORNECEDOR(
+id INT auto_increment, 
+FOREIGN KEY (id) REFERENCES veiculos (id),
+FOREIGN KEY (id) REFERENCES fornecedor (id),
+nome varchar(50) NOT NULL, 
+cnpj VARCHAR(14) NOT NULL,
+tipo_servico varchar(255) not null,
+telefone varchar(11), 
+primary key (id)) Engine = InnoDB; 
+;
+
+create table VEICULO_FORNECEDOR(
+id INT auto_increment, 
+id_veiculos INT,
+id_fornecedor INT,
+servico varchar(250) NOT NULL, 
+data_servico date NOT NULL,
+concluido boolean NOT NULL,
+FOREIGN KEY (`id_veiculos`) REFERENCES veiculos (id),
+FOREIGN KEY (`id_fornecedor`) REFERENCES fornecedor (id),
+primary key (id)) Engine = InnoDB; 
+;

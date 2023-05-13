@@ -1,5 +1,9 @@
 package br.com.software.models.dto.response;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.software.entities.Manutencao;
 import br.com.software.entities.Veiculos;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +23,17 @@ public class VeiculosResponse {
 
 	private int ano;
 	
+	private List<ManutencaoResponse> manutencoes;
+	
 	public VeiculosResponse(Veiculos veiculo) {
 		this.setId(veiculo.getId());
 		this.setPlaca(veiculo.getPlaca());
 		this.setChassi(veiculo.getChassi());
 		this.setModelo(veiculo.getModelo());
 		this.setAno(veiculo.getAno());
+		if(!veiculo.getManutencao().isEmpty()) {
+			this.setManutencoes(veiculo.getManutencao());
+		}
 	}
 
 	public int getId() {
@@ -65,5 +74,17 @@ public class VeiculosResponse {
 
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
+	}
+	
+	public List<ManutencaoResponse> getManutencoes() {
+		return manutencoes;
+	}
+
+	public void setManutencoes(List<Manutencao> manutencoes) {
+		List<ManutencaoResponse> manutencoesResponse = new ArrayList<>();
+			for (Manutencao manutencao : manutencoes) {
+				manutencoesResponse.add(new ManutencaoResponse(manutencao));
+			}
+			this.manutencoes = manutencoesResponse;	
 	}
 }

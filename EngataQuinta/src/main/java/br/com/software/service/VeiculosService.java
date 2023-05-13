@@ -6,13 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import br.com.software.entities.Proprietarios;
+import br.com.software.entities.Manutencao;
 import br.com.software.entities.Veiculos;
-import br.com.software.models.dto.request.VeiculoRequest;
 import br.com.software.models.dto.request.BuscaRequest;
+import br.com.software.models.dto.request.VeiculoRequest;
 import br.com.software.models.dto.response.DataResponse;
 import br.com.software.models.dto.response.VeiculosCompletoResponse;
 import br.com.software.models.dto.response.VeiculosResponse;
+import br.com.software.repository.ManutencoesRepository;
 import br.com.software.repository.ProprietariosRepository;
 import br.com.software.repository.VeiculosRepository;
 
@@ -21,10 +22,14 @@ public class VeiculosService {
 
 	private final VeiculosRepository repository;
 	private final ProprietariosRepository proprietarioRepository;
+	private final ManutencoesRepository manutencaoRespository;
 
-	public VeiculosService(VeiculosRepository veiculosRepository, ProprietariosRepository proprietarioRepository) {
+	public  VeiculosService(VeiculosRepository veiculosRepository,
+			ProprietariosRepository proprietarioRepository,
+			ManutencoesRepository manutencoesRepository) {
 		this.repository = veiculosRepository;
 		this.proprietarioRepository = proprietarioRepository;
+		this.manutencaoRespository = manutencoesRepository;
 	}
 
 	public DataResponse encontrarTodos() {
@@ -65,10 +70,11 @@ public class VeiculosService {
 		
 		try {
 			List<Veiculos> veiculos = repository.findByPropriedade(objeto.getValor());
-
 			List<VeiculosCompletoResponse> veiculosResponse = new ArrayList<>();
+			
 			if(veiculos.size()>0) {
-				veiculos.forEach(veiculo -> veiculosResponse.add(new VeiculosCompletoResponse(veiculo)));
+				veiculos.forEach(veiculo -> 
+				veiculosResponse.add(new VeiculosCompletoResponse(veiculo)));
 				String message = "Veiculos encontrados com sucesso!";
 				return new DataResponse(message, veiculosResponse);
 			}

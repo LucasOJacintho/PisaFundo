@@ -1,6 +1,10 @@
 package br.com.software.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.software.models.dto.request.VeiculoRequest;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +28,6 @@ import lombok.Setter;
 public class Veiculos {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private int id;
 	
@@ -42,6 +46,10 @@ public class Veiculos {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="veiculos_proprietarios", referencedColumnName="id", nullable = false, foreignKey = @ForeignKey(name="veiculos_proprietarios"))
 	private Proprietarios proprietario;
+	
+	@OneToMany(mappedBy="veiculo",fetch=FetchType.LAZY,cascade = CascadeType.ALL )
+	private List<Manutencao> manutencao = new ArrayList<>();
+
 		
 	public Proprietarios getProprietario() {
 		return proprietario;
@@ -105,6 +113,12 @@ public class Veiculos {
 		this.chassi = chassi;
 	}
 
-	
+	public List<Manutencao> getManutencao() {
+		return manutencao;
+	}
+
+	public void setManutencao(List<Manutencao> manutencao) {
+		this.manutencao = manutencao;
+	}
 	
 }
