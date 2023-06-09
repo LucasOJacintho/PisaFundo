@@ -2,6 +2,7 @@ import { Veiculo } from './../../models/veiculo.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { VeiculosService } from '../veiculos.service';
 import { Router } from '@angular/router';
+import { ProprietarioService } from 'src/app/proprietarios/proprietarios.service';
 
 @Component({
   selector: 'app-resultado-busca',
@@ -14,14 +15,15 @@ export class ResultadoBuscaComponent implements OnInit {
   tabela: string[] = ['MODELO', 'ANO', 'PLACA', 'CHASSI'];
   objetos: any[] = [];
 
-  constructor(private service: VeiculosService, private router: Router) {}
+  constructor(private service: VeiculosService, private proprietarioService: ProprietarioService, private router: Router) {}
 
   ngOnInit(): void {
     this.pesquisa = this.service.pesquisa;
     this.objetos = this.service.veiculo;
   }
 
-  detalheObjeto(objeto: any) {
+  detalheObjeto(objeto: Veiculo) {
+    this.proprietarioService.proprietario = objeto.proprietario
     this.service.veiculoDetalhe = objeto;
     this.router.navigate(['/detalhe-veiculos'], {
     });

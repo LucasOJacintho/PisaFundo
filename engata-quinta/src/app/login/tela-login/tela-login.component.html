@@ -1,0 +1,23 @@
+<body>
+  <div class="title">
+    <h1>ENGATA QUINTA</h1>
+    <h3>Software de gestão de manutenção veicular</h3>
+  </div>
+
+  <h4 *ngIf="alerta" class="alerta">O usuário e/ou a senha não conferem</h4>
+
+  <div class="field">
+    <p>Nome do usuário:</p>
+    <input [(ngModel)]="userName" type="text" (keyup)="alerta = false">
+  </div>
+
+  <div class="field">
+    <p >Senha:</p>
+    <input [(ngModel)]="senha" type="password" (keyup)="alerta = false">
+  </div>
+
+  <app-radio-button [propriedades]="tiposAcessos" (selecionarPropriedadeEvent)="alterarTipo($event)"></app-radio-button>
+
+  <button (click)="acesso()">Login</button>
+</body>
+

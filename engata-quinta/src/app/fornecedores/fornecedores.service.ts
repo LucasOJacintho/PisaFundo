@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataResponse } from '../models/dataResponse';
+import { DataResponse, DataResponseFornecedor } from '../models/dataResponse';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -19,9 +19,9 @@ export class FornecedoresService {
 
   constructor(private httpClient: HttpClient) { }
 
-  mainUrl = 'http://192.168.1.10:8080/fornecedores';
+  mainUrl = 'http://192.168.1.11:8080/fornecedores';
 
-  manutencoesUrl = 'http://192.168.1.10:8080/manutencoes';
+  manutencoesUrl = 'http://192.168.1.11:8080/manutencoes';
 
   localizarFornecedor(objeto: any): Observable<DataResponse> {
     return this.httpClient
@@ -33,6 +33,12 @@ export class FornecedoresService {
     return this.httpClient
       .post(this.mainUrl, tipo)
       .pipe(map((res) => res as DataResponse));
+  }
+
+  login(username: string, senha: string): Observable<DataResponseFornecedor> {
+    return this.httpClient
+      .post(this.mainUrl + '/login', {username, senha})
+      .pipe(map((res) => res as DataResponseFornecedor));
   }
 
   salvarFornecedor(fornecedor: FornecedoresRequest): Observable<DataResponse> {
@@ -52,5 +58,10 @@ export class FornecedoresService {
     return this.httpClient
       .get(this.manutencoesUrl + '/buscar_fornecedor_id?id=' + id)
       .pipe(map((res) => res as Manutencao[]));
+  }
+
+  concluirManutencao(id: number) {
+    return this.httpClient
+      .put(this.manutencoesUrl + '/concluir_manutencao', id)
   }
 }

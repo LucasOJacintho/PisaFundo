@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, take, takeUntil } from 'rxjs';
-import { DataResponse } from 'src/app/models/dataResponse';
+import { DataResponse, DataResponseProprietario } from 'src/app/models/dataResponse';
 import { Proprietarios, ProprietariosRequest } from 'src/app/models/proprietarios.model';
 
 @Injectable({
@@ -10,9 +10,9 @@ import { Proprietarios, ProprietariosRequest } from 'src/app/models/proprietario
 export class ProprietarioService {
 
 
-  proprieatarios: Proprietarios[] = [];
+  proprietarios: Proprietarios[] = [];
 
-  mainUrl = 'http://192.168.1.10:8080/proprietarios';
+  mainUrl = 'http://192.168.1.11:8080/proprietarios';
   cpfPesquisado: any;
   cnpjPesquisado: any;
   proprietario: Proprietarios;
@@ -21,6 +21,8 @@ export class ProprietarioService {
   cadastroRealizado: boolean;
   cadastrarProprietario: boolean;
   veiculos: any;
+  telaDeDetalhes: boolean;
+  idVeiculo: any;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -42,8 +44,14 @@ export class ProprietarioService {
 
   localizarProprietarioPeloIdVeiculo(id: Number): Observable<DataResponse> {
     return this.httpClient
-    .post(this.mainUrl, id)
+    .post(this.mainUrl+"/id", id)
     .pipe(map((res) => res as DataResponse));
+  }
+
+  login(username: string, senha: string): Observable<DataResponseProprietario> {
+    return this.httpClient
+    .post(this.mainUrl + '/login', {username, senha})
+    .pipe(map((res) => res as DataResponseProprietario));
   }
 
   validarDocumento(value: string) : Observable<DataResponse> {

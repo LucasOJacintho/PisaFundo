@@ -5,6 +5,7 @@ import { Manutencao, ManutencaoRequest } from 'src/app/models/manutencao';
 import { VeiculosService } from 'src/app/veiculos/veiculos.service';
 import { ActionModal } from 'src/app/shared/action-modal/actionModal';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/login/login.service';
 
 @Component({
   selector: 'app-detalhe-fornecedor',
@@ -20,7 +21,8 @@ export class DetalheFornecedorComponent implements OnInit {
   listaAtivas: Manutencao[] = [];
   listaExibida: Manutencao[] = [];
   novoServico: Manutencao;
-  tabela: string[] = ['Veiculo', 'Placa', 'Serviço'];
+  tabela: string[] = ['VEICULO', 'PLACA', 'SERVIÇO', 'CONCLUIR'];
+  tabelaConcluidos: string[] = ['VEICULO', 'PLACA', 'SERVIÇO',];
   statusManutencao: string;
   cadastro: boolean = false;
   servico: string;
@@ -34,13 +36,15 @@ export class DetalheFornecedorComponent implements OnInit {
     continuar: 'Continuar',
   };
   resetPlaca: boolean = false;
-  atualizado: boolean = false;;
+  atualizado: boolean = false;loading: boolean;
+;
 
   constructor(
     public service: FornecedoresService,
     public veiculoService: VeiculosService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public loginService : LoginService,
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +60,10 @@ export class DetalheFornecedorComponent implements OnInit {
   }
 
   cadastrar() {
+    if(!this.cadastro) {
+      this.servico=""
+      this.resetPlaca = true;
+    }
     this.cadastro = true;
   }
 
@@ -66,7 +74,7 @@ export class DetalheFornecedorComponent implements OnInit {
       propriedade: 'placa',
     };
     this.veiculoService.findVeiculo(objeto).subscribe((response) => {
-      if (response === null) {
+      if (response.object === null) {
         this.veiculoInexistente();
       } else {
         let novaManutencao: ManutencaoRequest = {
@@ -79,8 +87,11 @@ export class DetalheFornecedorComponent implements OnInit {
         this.atualizado = false;
         this.servico=""
         this.resetPlaca = true;
-        this.buscarManutencoes();
-
+        let interval = setInterval(() => {
+          this.loading = false;
+          this.ativas();
+          clearInterval(interval)
+        },1000, this.loading = true)
       }
     });
   }
@@ -98,8 +109,13 @@ export class DetalheFornecedorComponent implements OnInit {
           this.listaAtivas.push(manutencao);
         }
       });
-      if(!this.cadastro){
-        this.atualizado = true;
+      if(this.listaAtivas.length + this.listaConcluida.length === manutencoes.length) {
+        this.atualizado = true
+        if(this.statusManutencao === 'Manutenções em Andamento') {
+          this.listaExibida = this.listaAtivas;
+        }
+      } else {
+        this.atualizado = false
       }
     })
   }
@@ -108,11 +124,10 @@ export class DetalheFornecedorComponent implements OnInit {
     this.modal = {
       showModal: true,
       mensagem: 'Não existe veiculo cadastrado com o valor procurado.',
-      detalhes: 'Caso queira adicionar o veículo basta clicar em ADICIONAR.',
-      alerta:
-        'Ao clicar em Adicionar você será redirecionado para a página de cadstro de véiculos.',
-      cancelar: 'Cancelar',
-      continuar: 'Adicionar',
+      detalhes: 'Caso queira adicionar o veículo favor entrar em contato com o Administrador.',
+      alerta: '',
+      cancelar: 'Continuar',
+      continuar: '',
     };
   }
 
@@ -150,13 +165,29 @@ export class DetalheFornecedorComponent implements OnInit {
   }
 
   ativas() {
-    this.buscarManutencoes()
-    this.cadastro = false;
+    this.atualizado = false;
     this.statusManutencao = 'Manutenções em Andamento';
-    this.listaExibida = this.listaAtivas;
+    this.cadastro = false;
+    this.buscarManutencoes()
   }
 
   detalheObjeto(objeto: Manutencao) {
-    console.log(objeto);
+  }
+
+  concluir(id: number) {
+    this.service.concluirManutencao(id).subscribe(()=> {})
+    this.atualizado = false;
+    this.listaExibida = [];
+    this.listaAtivas = [];
+      let interval = setInterval(() => {
+        this.ativas();
+        clearInterval(interval)
+      },1000)
+  }
+
+  sair() {
+    this.loginService.acessoPermitido = false;
+    this.loginService.tipoAcesso = null
+    this.router.navigate(['/login'], { relativeTo: this.activatedRoute });
   }
 }

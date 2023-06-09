@@ -1,4 +1,5 @@
 import { Manutencao } from "./manutencao";
+import { Proprietarios } from "./proprietarios.model";
 
 export interface Veiculo {
     id: Number;
@@ -7,6 +8,7 @@ export interface Veiculo {
     ano: Number;
     modelo: String;
     manutencoes:Manutencao[]
+    proprietario: Proprietarios
 }
 
 export interface VeiculoRequest {

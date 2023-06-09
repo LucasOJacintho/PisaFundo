@@ -2,6 +2,7 @@ import { Fornecedores } from './../../models/fornecedores.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { ProprietarioService } from 'src/app/proprietarios/proprietarios.service';
+import { LoginService } from 'src/app/login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private proprrietarioService: ProprietarioService
+    private proprrietarioService: ProprietarioService,
+    public loginService: LoginService,
   ) {}
 
   navegacao(valor: string) {
@@ -59,5 +61,11 @@ export class HeaderComponent {
         });
         break;
     }
+  }
+
+  sair() {
+    this.loginService.acessoPermitido = false;
+    this.loginService.tipoAcesso = null
+    this.router.navigate(['/login'], { relativeTo: this.activatedRoute });
   }
 }

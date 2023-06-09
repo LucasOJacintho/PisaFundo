@@ -3,6 +3,7 @@ import { Veiculo } from 'src/app/models/veiculo.model';
 import { ActionModal } from 'src/app/shared/action-modal/actionModal';
 import { VeiculosService } from '../veiculos.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProprietarioService } from 'src/app/proprietarios/proprietarios.service';
 
 @Component({
   selector: 'app-buscar-veiculos',
@@ -56,11 +57,13 @@ export class BuscarVeiculosComponent implements OnInit {
   constructor(
     private service: VeiculosService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public proprietarioService: ProprietarioService
   ) {}
 
   ngOnInit(): void {
     this.findAllVeiculos();
+    this.proprietarioService.telaDeDetalhes = false;
   }
 
   findAllVeiculos() {

@@ -10,7 +10,4 @@ export class ButtonComponent {
 @Input() conteudo: string | undefined
 @Input() acao: string | undefined
 
-
-
-
 }

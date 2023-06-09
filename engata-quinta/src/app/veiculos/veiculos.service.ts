@@ -19,7 +19,7 @@ export class VeiculosService {
   chassiPesquisada: string | undefined;
   modeloPesquisada: string | undefined;
 
-  mainUrl = 'http://192.168.1.10:8080/veiculos';
+  mainUrl = 'http://192.168.1.11:8080/veiculos';
   resetarPlaca: boolean = false;
   veiculoDetalhe: Veiculo;
 

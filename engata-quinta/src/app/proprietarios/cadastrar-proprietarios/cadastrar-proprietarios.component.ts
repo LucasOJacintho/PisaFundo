@@ -98,7 +98,7 @@ export class CadastrarProprietariosComponent {
 
   pegarTodosProprietarios() {
     this.service.pegarTodosProprietarios().subscribe((response) => {
-      this.service.proprieatarios = response.object;
+      this.service.proprietarios = response.object;
     });
   }
 

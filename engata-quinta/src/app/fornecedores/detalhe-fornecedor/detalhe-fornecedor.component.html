@@ -9,7 +9,7 @@
   <app-button [conteudo]="'Manutenções concluídas'" [acao]="'continuar'" (click)="concluidas() "></app-button>
 </div>
 
-<div class="cadastro-veiculo" *ngIf="cadastro">
+<div class="cadastro-veiculo" *ngIf="cadastro && !loading">
   <h1>Cadastrar Nova Manutenção</h1>
   <app-criador-placa [placaNova]="" [resetPlaca]="resetPlaca"></app-criador-placa>
   <input [(ngModel)]="servico" type="text" placeholder="Insira a descrição do serviço" />
@@ -21,16 +21,24 @@
   <h1>{{statusManutencao}}</h1>
 
   <div class="main">
-    <div class="header">
+    <div *ngIf="statusManutencao === 'Manutenções em Andamento'" class="header">
       <div class="cabecalho" *ngFor="let propriedade of tabela">
         <div class="coluna">{{ propriedade }}</div>
       </div>
     </div>
+
+    <div *ngIf="statusManutencao !== 'Manutenções em Andamento'" class="header">
+      <div  class="cabecalho" *ngFor="let propriedadeConcluidos of tabelaConcluidos">
+        <div class="coluna">{{ propriedadeConcluidos }}</div>
+      </div>
+    </div>
+
     <div class="body" *ngIf="atualizado">
       <div (click)="detalheObjeto(manutencao)" class="linha" *ngFor="let manutencao of listaExibida">
         <div class="coluna">{{ manutencao.modeloVeiculo}}</div>
         <div class="coluna">{{ manutencao.placaVeiculo }}</div>
         <div class="coluna">{{ manutencao.servico }}</div>
+        <div *ngIf="statusManutencao === 'Manutenções em Andamento'" class="coluna" (click)="concluir(manutencao.id)">✓</div>
       </div>
     </div>
   </div>

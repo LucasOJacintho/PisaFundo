@@ -25,7 +25,7 @@ export class BuscarFornecedoresComponent implements OnChanges {
     },
   ];
 
-  tipo: string = "injecao";
+  tipo: string = "Injeção Eletrônica";
   tiposServicos: any[] = [
     {
       label: 'Injeção Eletrônica',
@@ -60,7 +60,6 @@ export class BuscarFornecedoresComponent implements OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-      console.log(this.tipo);
   }
 
   localizarFornecedor(objeto: any) {

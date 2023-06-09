@@ -1,8 +1,10 @@
+import { ProprietarioService } from 'src/app/proprietarios/proprietarios.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Proprietarios } from 'src/app/models/proprietarios.model';
 import { Veiculo } from 'src/app/models/veiculo.model';
-import { ProprietarioService } from '../proprietarios.service';
 import { VeiculosService } from 'src/app/veiculos/veiculos.service';
+import { LoginService } from 'src/app/login/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-resultado-proprietarios',
@@ -19,11 +21,15 @@ export class ResultadoProprietariosComponent implements OnInit,OnChanges  {
   objetos: any[] = []
   telaDeDetalhes: boolean = false;
 
-  constructor( public service:ProprietarioService, public veiculoServe: VeiculosService) { }
+  constructor( public service:ProprietarioService,
+    public veiculoService: VeiculosService,
+    public loginService: LoginService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.proprietario = this.service.proprietario;
-    this.documento = this.proprietario.cpf === null ? this.proprietario.cnpj : this.proprietario.cpf;
+    this.documento = this.proprietario.cpf?.trim() === "" ? this.proprietario.cnpj : this.proprietario.cpf;
     this.service.telaResultados = true;
     this.service.cadastrarVeiculo = false
   }
@@ -49,7 +55,15 @@ export class ResultadoProprietariosComponent implements OnInit,OnChanges  {
   }
 
   detalheObjeto(objeto: any) {
-    this.veiculoServe.veiculoDetalhe = objeto;
+    this.veiculoService.veiculoDetalhe = objeto;
+    this.service.idVeiculo = objeto.id;
     this.telaDeDetalhes = true;
+    this.service.telaDeDetalhes = true;
+  }
+
+  sair() {
+    this.loginService.acessoPermitido = false;
+    this.loginService.tipoAcesso = null
+    this.router.navigate(['/login'], { relativeTo: this.activatedRoute });
   }
 }

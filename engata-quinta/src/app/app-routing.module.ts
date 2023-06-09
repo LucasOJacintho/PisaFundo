@@ -11,6 +11,7 @@ import { ResultadosFornecedoresComponent } from './fornecedores/resultados-forne
 import { CadastrarFornecedoresComponent } from './fornecedores/cadastrar-fornecedores/cadastrar-fornecedores.component';
 import { DetalheVeiculosComponent } from './veiculos/detalhe-veiculos/detalhe-veiculos.component';
 import { DetalheFornecedorComponent } from './fornecedores/detalhe-fornecedor/detalhe-fornecedor.component';
+import { TelaLoginComponent } from './login/tela-login/tela-login.component';
 
 const routes: Routes = [
     { path: '', component: BuscarVeiculosComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'resultados-fornecedores', component: ResultadosFornecedoresComponent },
     { path: 'cadastro-fornecedores', component: CadastrarFornecedoresComponent },
     { path: 'detalhe-fornecedor', component: DetalheFornecedorComponent },
+    { path: 'login', component: TelaLoginComponent },
 ];
 
 @NgModule({

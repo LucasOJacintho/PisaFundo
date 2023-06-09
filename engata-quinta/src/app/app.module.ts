@@ -25,37 +25,41 @@ import { CadastrarFornecedoresComponent } from './fornecedores/cadastrar-fornece
 import { ResultadosFornecedoresComponent } from './fornecedores/resultados-fornecedores/resultados-fornecedores.component';
 import { DetalheVeiculosComponent } from './veiculos/detalhe-veiculos/detalhe-veiculos.component';
 import { DetalheFornecedorComponent } from './fornecedores/detalhe-fornecedor/detalhe-fornecedor.component';
+import { TelaLoginComponent } from './login/tela-login/tela-login.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    VeiculosComponent,
-    HeaderComponent,
-    RadioButtonComponent,
-    SearchBarComponent,
-    InformacaoComponent,
-    ActionModalComponent,
-    ButtonComponent,
-    ResultadoBuscaComponent,
-    CadastrarVeiculoComponent,
-    BuscarVeiculosComponent,
-    TabelaComponent,
-    BuscarProprietariosComponent,
-    CadastrarProprietariosComponent,
-    ResultadoProprietariosComponent,
-    BuscarFornecedoresComponent,
-    CadastrarFornecedoresComponent,
-    ResultadosFornecedoresComponent,
-    DetalheVeiculosComponent,
-    DetalheFornecedorComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    CriadorPlacaModule,
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        VeiculosComponent,
+        HeaderComponent,
+        RadioButtonComponent,
+        SearchBarComponent,
+        InformacaoComponent,
+        ActionModalComponent,
+        ButtonComponent,
+        ResultadoBuscaComponent,
+        CadastrarVeiculoComponent,
+        BuscarVeiculosComponent,
+        TabelaComponent,
+        BuscarProprietariosComponent,
+        CadastrarProprietariosComponent,
+        ResultadoProprietariosComponent,
+        BuscarFornecedoresComponent,
+        CadastrarFornecedoresComponent,
+        ResultadosFornecedoresComponent,
+        DetalheVeiculosComponent,
+        DetalheFornecedorComponent,
+        TelaLoginComponent,
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        CriadorPlacaModule,
+        MatProgressBarModule
+    ]
 })
 export class AppModule { }

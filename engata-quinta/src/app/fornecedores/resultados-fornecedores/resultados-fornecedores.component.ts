@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FornecedoresService } from '../fornecedores.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fornecedores } from 'src/app/models/fornecedores.model';
+import { LoginService } from 'src/app/login/login.service';
 
 @Component({
   selector: 'app-resultados-fornecedores',
@@ -15,7 +16,8 @@ export class ResultadosFornecedoresComponent {
   constructor(
     public service: FornecedoresService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+
   ) {}
 
   detalheObjeto(objeto: Fornecedores) {
@@ -23,4 +25,6 @@ export class ResultadosFornecedoresComponent {
     this.router.navigate(['/detalhe-fornecedor'], {
     });
   }
+
+
 }

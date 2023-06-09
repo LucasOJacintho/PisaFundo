@@ -1,5 +1,52 @@
+h1{
+  margin-top: 30px;
+}
+
 .dados-veiculos {
   display: flex;
   gap:80px;
   margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+  background-color: rgb(179, 179, 179);
+}
+
+.coluna {
+  //border: 1px solid black;
+  padding: 15px;
+  width: -webkit-fill-available;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+}
+
+.linha:hover {
+  background-color: beige;
+  cursor: pointer;
+}
+
+.main {
+  width: 80%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.body {
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }

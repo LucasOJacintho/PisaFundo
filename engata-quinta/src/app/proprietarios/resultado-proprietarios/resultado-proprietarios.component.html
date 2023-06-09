@@ -10,8 +10,8 @@
 </div>
 
 <div *ngIf=" !service.cadastrarVeiculo" class="campo-botao">
-  <app-button *ngIf=" !telaDeDetalhes" [conteudo]="'Cadastrar Novo'" [acao]="'continuar'" (click)="mudarTela()"></app-button>
-  <app-button *ngIf=" telaDeDetalhes" [conteudo]="'Voltar'" [acao]="'continuar'" (click)="telaDeDetalhes = false"></app-button>
+  <app-button *ngIf=" !telaDeDetalhes && loginService.tipoAcesso === 'Administrador'" [conteudo]="'Cadastrar Novo'" [acao]="'continuar'" (click)="mudarTela()"></app-button>
+  <app-button *ngIf=" telaDeDetalhes" [conteudo]="'Voltar'" [acao]="'continuar'" (click)="telaDeDetalhes = false && service.telaDeDetalhes = false"></app-button>
 </div>
 
 <app-cadastrar-veiculo *ngIf="service.cadastrarVeiculo"></app-cadastrar-veiculo>
