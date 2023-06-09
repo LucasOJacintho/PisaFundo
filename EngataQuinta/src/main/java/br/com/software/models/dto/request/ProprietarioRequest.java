@@ -17,6 +17,7 @@ public class ProprietarioRequest {
 	
 	private Integer veiculos_proprietarios;
 
+
 	public String getNome() {
 		return nome;
 	}
