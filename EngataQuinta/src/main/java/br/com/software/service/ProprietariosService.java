@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.software.entities.Proprietarios;
 import br.com.software.models.dto.request.BuscaRequest;
+import br.com.software.models.dto.request.LoginRequest;
 import br.com.software.models.dto.request.ProprietarioRequest;
 import br.com.software.models.dto.response.DataResponse;
 import br.com.software.models.dto.response.ProprietariosCompletoResponse;
@@ -84,5 +85,19 @@ public class ProprietariosService {
 			response.setMessage("Dados invalidos");
 		}
 		return response;
+	}
+
+	public DataResponse login(LoginRequest login) {
+		DataResponse response = new DataResponse(null, null);
+		Proprietarios proprietario = repository.login(login.getUsername(), login.getSenha());
+		if(proprietario != null) {
+			response.setMessage("Login realizado com sucesso");
+			response.setObject(new ProprietariosCompletoResponse(proprietario));
+		}
+		else {
+			response.setMessage("O Login falhou");
+			response.setObject(null);
+		}
+		return response;	
 	}
 }

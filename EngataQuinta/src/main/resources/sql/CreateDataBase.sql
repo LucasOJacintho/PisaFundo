@@ -18,6 +18,8 @@ nome varchar(50) NOT NULL,
 rg VARCHAR(9) NOT NULL,
 cpf varchar(11) not null,
 aniversario date NOT NULL, 
+senha varchar(8) NOT NULL,
+username varchar(12) NOT NULL,
 primary key (id)) Engine = InnoDB; 
 ;
 
@@ -44,6 +46,8 @@ nome varchar(50) NOT NULL,
 cnpj VARCHAR(14) NOT NULL,
 tipo_servico varchar(255) not null,
 telefone varchar(11), 
+senha varchar(8) NOT NULL,
+username varchar(12) NOT NULL,
 primary key (id)) Engine = InnoDB; 
 ;
 

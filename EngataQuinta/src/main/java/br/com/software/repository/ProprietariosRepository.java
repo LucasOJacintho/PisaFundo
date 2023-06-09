@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import br.com.software.entities.Proprietarios;
-import br.com.software.models.dto.request.BuscaRequest;
 
 public interface ProprietariosRepository extends JpaRepository<Proprietarios, Integer> {
 
@@ -18,5 +17,8 @@ public interface ProprietariosRepository extends JpaRepository<Proprietarios, In
 
 	@Query(nativeQuery=true,value= "SELECT * FROM PROPRIETARIOS WHERE id = :valor")
 	Proprietarios getProprietarioById(@Param("valor")int valor);
+	
+	@Query(nativeQuery=true,value= "SELECT * FROM PROPRIETARIOS WHERE username = :username AND senha = :senha")
+	Proprietarios login(@Param("username")String username, @Param("senha")String password);
 
 }

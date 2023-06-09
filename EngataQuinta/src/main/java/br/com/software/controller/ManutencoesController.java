@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,5 +40,10 @@ public class ManutencoesController {
 	@GetMapping(value="buscar_fornecedor_id")
 	public List<ManutencaoResponse> buscaFornecedorId(@RequestParam int id) {
 		return service.buscaFornecedorId(id);
+	}
+
+	@PutMapping(value="concluir_manutencao")
+	public void concluirManutencao(@RequestBody Integer id) {
+		service.concluirManutencao(id);
 	}
 }

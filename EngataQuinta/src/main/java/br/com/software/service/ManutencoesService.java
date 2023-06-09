@@ -48,4 +48,8 @@ public class ManutencoesService {
 		return manutencoesResponse;
 	}
 
+	public void concluirManutencao(Integer id) {
+		repository.concluirManutencao(id);
+	}
+
 }

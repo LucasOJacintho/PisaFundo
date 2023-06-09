@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class ManutencaoResponse {
 	
+	private int id;
+	
 	private String proprietario;
 	
 	private String modeloVeiculo;
@@ -25,6 +27,7 @@ public class ManutencaoResponse {
 	private boolean concluido;
 
 	public ManutencaoResponse(Manutencao manutencao) {		
+		this.setId(manutencao.getId());
 		this.setServico(manutencao.getServico());
 		this.setDataServico(manutencao.getData_servico());
 		this.setConcluido(manutencao.isConcluido());
@@ -34,6 +37,20 @@ public class ManutencaoResponse {
 		this.setPlacaVeiculo(manutencao.getVeiculo().getPlaca());
 		this.setTelefoneFornecedor(manutencao.getFornecedor().getTelefone());
 	}
+
+	
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 
 	public String getProprietario() {
 		return proprietario;

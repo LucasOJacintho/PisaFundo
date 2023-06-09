@@ -12,10 +12,13 @@ public interface FornecedoresRepository extends JpaRepository<Fornecedores, Inte
 
 	List<Fornecedores> findAll();
 
-	@Query(nativeQuery=true,value= "SELECT * FROM FORNECEDOR WHERE cnpj = :valor or tipo_servico = :valor")
+	@Query(nativeQuery=true, value= "SELECT * FROM FORNECEDOR WHERE cnpj = :valor or tipo_servico = :valor")
 	List<Fornecedores> findByPropriedade(@Param("valor") String valor);
 
-	@Query(nativeQuery=true,value= "SELECT * FROM FORNECEDOR WHERE id = :valor")
+	@Query(nativeQuery=true, value= "SELECT * FROM FORNECEDOR WHERE id = :valor")
 	Fornecedores getProprietarioById(@Param("valor")int valor);
+	
+	@Query(nativeQuery=true, value= "SELECT * FROM FORNECEDOR WHERE username = :username AND senha = :senha")
+	Fornecedores login(@Param("username")String username, @Param("senha")String password);
 
 }

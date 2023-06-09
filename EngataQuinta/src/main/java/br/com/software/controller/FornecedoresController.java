@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.software.models.dto.request.BuscaRequest;
 import br.com.software.models.dto.request.FornecedorRequest;
+import br.com.software.models.dto.request.LoginRequest;
 import br.com.software.models.dto.response.DataResponse;
 import br.com.software.service.FornecedoresService;
 
@@ -37,4 +38,10 @@ public class FornecedoresController {
 	public DataResponse cadastrar(@RequestBody FornecedorRequest fornecedor) {
 		return service.cadastrar(fornecedor);
 	}
+	
+	@PostMapping(value="login")
+	public DataResponse login(@RequestBody LoginRequest login) {
+		return service.login(login);
+	}
+
 }

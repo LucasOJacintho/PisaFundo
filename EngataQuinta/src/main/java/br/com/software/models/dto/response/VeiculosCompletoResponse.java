@@ -33,7 +33,7 @@ public class VeiculosCompletoResponse {
 		this.setChassi(veiculo.getChassi());
 		this.setModelo(veiculo.getModelo());
 		this.setAno(veiculo.getAno());
-		//this.setProprietario(new ProprietariosResponse(veiculo.getProprietario()));
+		this.setProprietario(new ProprietariosResponse(veiculo.getProprietario()));
 		this.setManutencoes(veiculo.getManutencao());
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.software.models.dto.request.BuscaRequest;
+import br.com.software.models.dto.request.LoginRequest;
 import br.com.software.models.dto.request.ProprietarioRequest;
 import br.com.software.models.dto.response.DataResponse;
 import br.com.software.service.ProprietariosService;
@@ -37,6 +38,11 @@ public class ProprietariosController {
 	@PostMapping(value="cadastrar")
 	public DataResponse cadastrar(@RequestBody ProprietarioRequest proprietario) {
 		return service.cadastrar(proprietario);
+	}
+	
+	@PostMapping(value="login")
+	public DataResponse login(@RequestBody LoginRequest login) {
+		return service.login(login);
 	}
 	
 	@PostMapping(value="documento")

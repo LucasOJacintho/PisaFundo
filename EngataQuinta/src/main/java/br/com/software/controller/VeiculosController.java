@@ -14,7 +14,7 @@ import br.com.software.service.VeiculosService;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 @RequestMapping(value = "veiculos")
 public class VeiculosController {
 

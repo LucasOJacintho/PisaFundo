@@ -29,6 +29,12 @@ public class Fornecedores {
 	@Column (name = "cnpj")
 	private String cnpj;
 	
+	@Column (name = "username")
+	private String username;
+	
+	@Column (name = "senha")
+	private String senha;
+	
 	@Column (name = "telefone")
 	private String telefone;
 	
@@ -98,4 +104,20 @@ public class Fornecedores {
 		this.manutencao = manutencao;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
 }

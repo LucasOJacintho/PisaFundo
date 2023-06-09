@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.software.entities.Fornecedores;
 import br.com.software.models.dto.request.BuscaRequest;
 import br.com.software.models.dto.request.FornecedorRequest;
+import br.com.software.models.dto.request.LoginRequest;
 import br.com.software.models.dto.response.DataResponse;
 import br.com.software.models.dto.response.FornecedorResponse;
 import br.com.software.repository.FornecedoresRepository;
@@ -54,18 +55,6 @@ public class FornecedoresService {
 			return new DataResponse("Houve uma falha de comunicação, não foi possível concluir a solicitação!");
 		}
 	}
-	
-	/*public DataResponse validarDocumento(String valor) {
-		try {
-			List<Proprietarios> proprietarios = repository.findByPropriedade(valor);
-			if(proprietarios.size()>0) {
-				return new DataResponse("Proprietário localizado com sucesso!", proprietarios.get(0).getId());
-			}
-			return new DataResponse("Proprietário não localizado!");
-		} catch (Exception e) {
-			return new DataResponse("Houve uma falha de comunicação, não foi possível concluir a solicitação!");
-		}
-	}*/
 
 	public DataResponse cadastrar(FornecedorRequest request) {
 		Fornecedores fornecedor = new Fornecedores(request);
@@ -79,5 +68,18 @@ public class FornecedoresService {
 		}
 		return response;
 	}
+
+	public DataResponse login(LoginRequest login) {
+		DataResponse response = new DataResponse(null, null);
+		Fornecedores fornecedor = repository.login(login.getUsername(), login.getSenha());
+		if(fornecedor != null) {
+			response.setMessage("Login realizado com sucesso");
+			response.setObject(new FornecedorResponse(fornecedor));
+		}
+		else {
+			response.setMessage("O Login falhou");
+		}
+		return response;
+		}
 
 }
