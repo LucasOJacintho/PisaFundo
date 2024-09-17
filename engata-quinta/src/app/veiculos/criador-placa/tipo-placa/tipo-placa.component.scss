@@ -1,0 +1,21 @@
+.seletor {
+    display: flex;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: fit-content;
+    align-items: center;
+}
+
+.botao{
+    height: 30px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected {
+    background-color: aqua;
+    border-radius: 5px;
+}

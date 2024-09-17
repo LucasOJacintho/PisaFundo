@@ -1,0 +1,33 @@
+.button {
+    padding: 10px;
+    height: 29px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.button:hover {
+    cursor:pointer;
+}
+
+p {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cancelar {
+    background-color: rgb(194, 75, 75);
+    color: white;
+}
+
+.continuar {
+    background-color: rgb(75, 194, 105);
+    color: white;
+}
+
+.pesquisar {
+    background-color: rgb(60, 61, 60);
+    color: white;
+}

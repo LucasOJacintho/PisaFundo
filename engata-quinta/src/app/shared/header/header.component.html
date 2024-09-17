@@ -1,0 +1,41 @@
+<header>
+    <div class="primeiro-campo"></div>
+    <div class="segundo-campo">
+
+        <h1>Engata Quinta</h1>
+
+        <body>
+            <div  class="menu">
+                <div *ngIf="loginService.tipoAcesso == 'Administrador'" class="opcao" (mouseenter)="veiculos = true" (mouseleave)="veiculos = false">
+                    <div class="opcaoPrincipal">Veiculos</div>
+                    <div class="subOpcao" *ngIf="veiculos">
+                        <div (click)="navegacao('buscar-veiculos')" class="subBotao">Buscar</div>
+                        <div (click)="navegacao('cadastrar-veiculos')" class="subBotao">Cadastrar</div>
+                    </div>
+                </div>
+
+                <div *ngIf="loginService.tipoAcesso == 'Administrador'" class="opcao" (mouseenter)="proprietarios = true" (mouseleave)="proprietarios = false">
+                    <div class="opcaoPrincipal">Proprietário</div>
+                    <div class="subOpcao" *ngIf="proprietarios">
+                        <div (click)="navegacao('buscar-proprietarios')" class="subBotao">Buscar</div>
+                        <div (click)="navegacao('cadastrar-proprietarios')" class="subBotao">Cadastrar</div>
+                    </div>
+                </div>
+
+                <div *ngIf="loginService.tipoAcesso == 'Administrador'" class="opcao" (mouseenter)="fornecedores = true" (mouseleave)="fornecedores = false">
+                  <div class="opcaoPrincipal">Fornecedores</div>
+                  <div class="subOpcao" *ngIf="fornecedores">
+                      <div (click)="navegacao('buscar-fornecedores')" class="subBotao">Buscar</div>
+                      <div (click)="navegacao('cadastrar-fornecedores')" class="subBotao">Cadastrar</div>
+                  </div>
+              </div>
+
+              <div (click)="sair()">SAIR</div>
+
+            </div>
+
+
+        </body>
+
+    </div>
+</header>

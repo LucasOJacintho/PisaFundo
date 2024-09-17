@@ -1,0 +1,35 @@
+<div class="adicionar-veiculos">
+    <h1>Cadastrar novo proprietario</h1>
+
+    <input [(ngModel)]="nome" type="text" placeholder="Insira o nome do proprietário" />
+    <div class="documento">
+        <div class="seletor">
+            <div class="botao" [class.selected]="!documentoSelecionado" (click)="documento(false)">
+                CPF
+            </div>
+            <div class="botao" [class.selected]="documentoSelecionado" (click)="documento(true)">
+                CNPJ
+            </div>
+        </div>
+            <input *ngIf="!documentoSelecionado" [(ngModel)]="cpf" maxlength="11"
+                placeholder="Insira o CPF do proprietário" type="text"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+            <input *ngIf="documentoSelecionado" [(ngModel)]="cnpj" maxlength="14"
+                placeholder="Insira o CNPJ do proprietário" type="text"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+    </div>
+
+    <input [(ngModel)]="aniversario" type="date" max="dataAtual"
+        placeholder="Insira a data de aniversário do proprietário" />
+
+    <app-button [conteudo]="'Cadastrar'" [acao]="
+      ((!this.documentoSelecionado && this.cpf?.length === 11) ||
+        (this.documentoSelecionado && this.cnpj?.length === 14)) &&
+      nome.trim().length > 3 &&
+      aniversario !== undefined
+        ? 'continuar'
+        : 'cancelar'
+    " (click)="prepararProprietario()"></app-button>
+</div>
+
+<app-action-modal [modal]="modal" (continuarEvent)="continuar($event)"></app-action-modal>

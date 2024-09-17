@@ -1,0 +1,16 @@
+<div *ngIf="modal.showModal" class="blur">
+  <div *ngIf="modal.showModal" class="modal">
+    <div class="header">
+      <p>{{ modal.mensagem }}</p>
+      <button (click)="fecharModal()">X</button>
+    </div>
+    <div class="body">
+      <p>{{ modal.detalhes }}</p>
+      <p class="alerta">{{ modal.alerta }}</p>
+    </div>
+    <div class="botoes">
+      <app-button (click)="fecharModal()" [conteudo]="modal.cancelar" [acao]="'cancelar'"></app-button>
+      <app-button *ngIf="modal.continuar !== ''" (click)="continuar()" [conteudo]="modal.continuar" [acao]="'continuar'"></app-button>
+    </div>
+  </div>
+</div>

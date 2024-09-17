@@ -1,0 +1,23 @@
+<header>
+  <div>Nome: {{ proprietario.nome }}</div>
+  <div>Documento: {{ documento }}</div>
+</header>
+
+<div *ngIf="proprietario.veiculos.length > 0 && !service.cadastrarVeiculo && !telaDeDetalhes" class="informacao">
+  <h1>Veiculos</h1>
+
+  <app-tabela [propriedades]="tabela" [objetos]="service.veiculos" (detalheObjetoEvent)="detalheObjeto($event)"></app-tabela>
+</div>
+
+<div *ngIf=" !service.cadastrarVeiculo" class="campo-botao">
+  <app-button *ngIf=" !telaDeDetalhes && loginService.tipoAcesso === 'Administrador'" [conteudo]="'Cadastrar Novo'" [acao]="'continuar'" (click)="mudarTela()"></app-button>
+  <app-button *ngIf=" telaDeDetalhes" [conteudo]="'Voltar'" [acao]="'continuar'" (click)="telaDeDetalhes = false && service.telaDeDetalhes = false"></app-button>
+</div>
+
+<app-cadastrar-veiculo *ngIf="service.cadastrarVeiculo"></app-cadastrar-veiculo>
+
+<div *ngIf="service.cadastrarVeiculo" class="campo-botao cancelar-salvamento">
+  <app-button [conteudo]="'Cancelar'" [acao]="'cancelar'" (click)="service.cadastrarVeiculo = false"></app-button>
+</div>
+
+<app-detalhe-veiculos *ngIf="telaDeDetalhes"></app-detalhe-veiculos>

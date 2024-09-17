@@ -1,0 +1,13 @@
+<body *ngIf="loginService.tipoAcesso === 'Administrador' && loginService.acessoPermitido">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+</body>
+
+<body *ngIf="(loginService.tipoAcesso === 'Proprietário' || loginService.tipoAcesso === 'Fornecedor') && loginService.acessoPermitido">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+</body>
+
+<body *ngIf="!loginService.acessoPermitido">
+  <router-outlet></router-outlet>
+</body>

@@ -1,0 +1,22 @@
+<header>
+  <div *ngIf="!service.pesquisaPorTipo">CNPJ: {{ service.fornecedores[0].cnpj }}</div>
+  <div *ngIf="service.pesquisaPorTipo">Tipo: {{ service.tipoPesquisado }}</div>
+
+</header>
+
+<h1>Fornecedores</h1>
+
+<div class="main">
+  <div class="header" >
+    <div class="cabecalho" *ngFor="let propriedade of tabela">
+      <div class="coluna">{{ propriedade }}</div>
+    </div>
+  </div>
+  <div class="body">
+    <div (click)="detalheObjeto(fornecedor)" class="linha" *ngFor="let fornecedor of service.fornecedores">
+      <div class="coluna">{{ fornecedor.nome }}</div>
+      <div class="coluna">{{ fornecedor.cnpj }}</div>
+      <div class="coluna">{{ fornecedor.telefone }}</div>
+    </div>
+  </div>
+</div>

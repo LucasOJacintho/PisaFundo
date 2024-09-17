@@ -1,0 +1,16 @@
+
+Descobrir como inserir uma data mínima e máxima 
+
+Criar o Toast
+
+Alterar forma de cadastrar veiculo
+
+    CADASTRO DE VEICULOS
+    Se o documento não existir 
+        Deve falar para ir para a tela de cadastro de usuário e depois retornar
+    Se o documento existir
+        Deve ser disparada uma busca no banco para pegar a posição do usuário no banco e inserir - tudo no back
+    
+    PROPRIETARIO
+         Deve ser disparada uma busca no banco para pegar a posição do usuário no banco e inserir - tudo no back
+

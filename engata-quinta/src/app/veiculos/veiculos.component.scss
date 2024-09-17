@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  margin: 0 0 0 20px;
+}
+
+.adicionar-veiculos {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 20px;
+  input {
+    height: 40px;
+  }
+}

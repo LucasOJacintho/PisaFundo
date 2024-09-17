@@ -1,0 +1,28 @@
+
+<div class="adicionar-veiculos">
+    <h1>Cadastrar novo veículo</h1>
+
+    <input [(ngModel)]="modelo" type="text" placeholder="Insira o modelo do veiculo" />
+    <app-criador-placa [placaNova]="" [resetPlaca]="resetPlaca"></app-criador-placa>
+    <input [(ngModel)]="ano" type="number" maxlength="4"placeholder="Insira o ano de fabricação do veiculo" />
+    <input [(ngModel)]="chassi" type="text" maxlength="17" placeholder="Insira o número de chassi do veiculo" />
+    <div *ngIf="!cadastrarVeiculo" class="documento">
+        <div class="seletor">
+            <div class="botao" [class.selected]="!documentoSelecionado" (click)="documento(false)">CPF</div>
+            <div class="botao" [class.selected]="documentoSelecionado" (click)="documento(true)">CNPJ</div>
+        </div>
+        <div>
+            <input *ngIf="!documentoSelecionado" [(ngModel)]="cpf" maxlength="11"
+                placeholder="Insira o CPF do proprietário" type="text"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+            <input *ngIf="documentoSelecionado" [(ngModel)]="cnpj" maxlength="14"
+                placeholder="Insira o CNPJ do proprietário" type="text"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+        </div>
+    </div>
+    
+    <app-button [conteudo]="'Cadastrar'" [acao]="'continuar'" (click)="validarDocumento()"></app-button>
+
+</div>
+
+<app-action-modal [modal]="modal" (continuarEvent)="continuar($event)" (cadastrarProprietarioEvent)="cadastrarNovoProprietario($event)"></app-action-modal>

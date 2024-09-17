@@ -1,0 +1,23 @@
+<h1>Nome Proprietário: {{proprietario.nome}}</h1>
+<div class="dados-veiculos">
+  <h2>Modelo do Veiculo: {{service.veiculoDetalhe.modelo}}</h2>
+  <h2>Placa:{{service.veiculoDetalhe.placa}}</h2>
+  <h2>Ano:{{service.veiculoDetalhe.ano}}</h2>
+</div>
+
+<!-- <app-tabela [propriedades]="tabela" [objetos]="manutencoes"></app-tabela> -->
+
+<div class="header" >
+  <div class="cabecalho" *ngFor="let propriedade of tabela">
+    <div class="coluna">{{ propriedade }}</div>
+  </div>
+</div>
+<div class="body">
+  <div class="linha" *ngFor="let caracteristica of manutencoes">
+    <div class="coluna">{{ caracteristica.servico }}</div>
+    <div class="coluna">{{ caracteristica.fornecedor }}</div>
+    <div class="coluna">{{ caracteristica.telefoneFornecedor }}</div>
+    <div class="coluna">{{ caracteristica.dataServico.toString().substring(10,0)  }}</div>
+    <div class="coluna">{{ caracteristica.concluido ? 'Concluido' : 'Em Andamento' }}</div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="main">
+  <div class="header" >
+    <div class="cabecalho" *ngFor="let propriedade of propriedades">
+      <div class="coluna">{{ propriedade }}</div>
+    </div>
+  </div>
+  <div class="body">
+    <div (click)="detalheObjeto(caracteristica)" class="linha" *ngFor="let caracteristica of objetos">
+      <div class="coluna">{{ caracteristica.modelo }}</div>
+      <div class="coluna">{{ caracteristica.ano }}</div>
+      <div class="coluna">{{ caracteristica.placa }}</div>
+      <div class="coluna">{{ caracteristica.chassi }}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+header {
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+  align-items: center;
+  font-family: arial;
+  font-weight: bolder;
+  background-color: #ffb89e;
+}
+
+.campo-botao {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.cancelar-salvamento {
+  margin-top: -150px;
+}

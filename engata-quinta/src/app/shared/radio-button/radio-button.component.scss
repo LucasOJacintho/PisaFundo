@@ -1,0 +1,27 @@
+.select-option {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .radio-button-options {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .radio-button-externo {
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: white;
+    height: 14px;
+    width: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .radio-button-interno {
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    height: 8px;
+    width: 8px;
+  }

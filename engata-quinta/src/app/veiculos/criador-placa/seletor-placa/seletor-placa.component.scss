@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'placa' ;
+  src: url(FE-FONT.TTF);
+}
+
+.seletor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.placa{
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 45px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'placa';
+  }
+
+.up-arrow {
+    width: 20px;
+    height: 10px;
+    clip-path: polygon(
+      0 0,
+      50% 100%,
+      100% 0,
+    );
+    transform: rotate(180deg);
+    background-color: black;
+    border: none;
+  }
+
+  .down-arrow {
+    width: 20px;
+    height: 10px;
+    clip-path: polygon(
+      0 0,
+      50% 100%,
+      100% 0,
+    );
+    background-color: black;
+    border: none;
+  }
